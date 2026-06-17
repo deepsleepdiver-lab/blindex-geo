@@ -1,0 +1,247 @@
+{
+  "date": "2026-06-17",
+  "timestamp": "2026-06-17T02:54:35.728Z",
+  "results": {
+    "chatgpt": {
+      "name": "ChatGPT",
+      "queries": {
+        "best single player Indian poker app for Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "OpenAI error: {\"error\":{\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.\",\"type\":\"insufficient_quota\",\"param\":null,\"code\":\"insufficient_quota\"}}"
+        },
+        "Indian poker app without friends": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "OpenAI error: {\"error\":{\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.\",\"type\":\"insufficient_quota\",\"param\":null,\"code\":\"insufficient_quota\"}}"
+        },
+        "blind man's bluff card game app Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "OpenAI error: {\"error\":{\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.\",\"type\":\"insufficient_quota\",\"param\":null,\"code\":\"insufficient_quota\"}}"
+        },
+        "best offline card game Android free": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "OpenAI error: {\"error\":{\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.\",\"type\":\"insufficient_quota\",\"param\":null,\"code\":\"insufficient_quota\"}}"
+        },
+        "how to play Indian poker on Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "OpenAI error: {\"error\":{\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.\",\"type\":\"insufficient_quota\",\"param\":null,\"code\":\"insufficient_quota\"}}"
+        },
+        "free single player card game Android no wifi": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "OpenAI error: {\"error\":{\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.\",\"type\":\"insufficient_quota\",\"param\":null,\"code\":\"insufficient_quota\"}}"
+        }
+      }
+    },
+    "claude": {
+      "name": "Claude",
+      "queries": {
+        "best single player Indian poker app for Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [
+            "indian poker"
+          ],
+          "response_snippet": "# Best Single Player Indian Poker Apps for Android\n\nBased on current availability, here are your top options:\n\n## **Top Recommendations:**\n\n1. **Teen Patti by Moonfrog Labs**\n   - Most popular Indian poker variant app\n   - Good single-player modes and tutorials\n   - Large player base\n   - Free with "
+        },
+        "Indian poker app without friends": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [
+            "indian poker"
+          ],
+          "response_snippet": "# Indian Poker Apps Without Friends Required\n\nHere are some good options where you can play Indian poker (Teen Patti) against AI or random opponents:\n\n## Popular Apps:\n\n1. **Teen Patti by Octro**\n   - Play against AI or online players\n   - No need to add friends\n   - Free chips to start\n   - Realist"
+        },
+        "blind man's bluff card game app Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "response_snippet": "# Blind Man's Bluff Card Game Apps for Android\n\nI don't have specific apps dedicated solely to \"Blind Man's Bluff\" in the Play Store, but here are your best options:\n\n## General Card Game Platforms\n- **Tabletop Simulator** - Allows you to play custom card games including variants of bluffing games\n-"
+        },
+        "best offline card game Android free": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "response_snippet": "# Best Offline Card Games for Android (Free)\n\n## Top Picks\n\n**Solitaire Stories**\n- Classic solitaire with a story twist\n- Multiple solitaire variants\n- No ads if you play offline\n\n**Magic Solitaire**\n- Beautiful graphics and smooth gameplay\n- Various solitaire modes\n- Completely free, minimal ads\n\n"
+        },
+        "how to play Indian poker on Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [
+            "indian poker"
+          ],
+          "response_snippet": "# Indian Poker on Android\n\nIndian Poker is a fun bluffing card game. Here's how to play it on Android:\n\n## Apps to Download\n- **Poker Brothers** - Offers Indian Poker variants\n- **PokerStars** - Has various poker games including community card variants\n- **Adda52** - Popular in India for poker games"
+        },
+        "free single player card game Android no wifi": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "response_snippet": "# Free Single Player Card Games for Android (No WiFi)\n\nHere are some great options that work offline:\n\n## Classic Card Games\n- **Solitaire Grand Harvest** - Multiple solitaire variations with no internet required\n- **Microsoft Solitaire Collection** - Traditional solitaire games, fully offline\n- **K"
+        }
+      }
+    },
+    "gemini": {
+      "name": "Gemini",
+      "queries": {
+        "best single player Indian poker app for Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Gemini error: {\"error\":{\"code\":404,\"message\":\"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\"status\":\"NOT_FOUND\"}}"
+        },
+        "Indian poker app without friends": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Gemini error: {\"error\":{\"code\":404,\"message\":\"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\"status\":\"NOT_FOUND\"}}"
+        },
+        "blind man's bluff card game app Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Gemini error: {\"error\":{\"code\":404,\"message\":\"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\"status\":\"NOT_FOUND\"}}"
+        },
+        "best offline card game Android free": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Gemini error: {\"error\":{\"code\":404,\"message\":\"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\"status\":\"NOT_FOUND\"}}"
+        },
+        "how to play Indian poker on Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Gemini error: {\"error\":{\"code\":404,\"message\":\"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\"status\":\"NOT_FOUND\"}}"
+        },
+        "free single player card game Android no wifi": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Gemini error: {\"error\":{\"code\":404,\"message\":\"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\"status\":\"NOT_FOUND\"}}"
+        }
+      }
+    },
+    "perplexity": {
+      "name": "Perplexity",
+      "queries": {
+        "best single player Indian poker app for Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Perplexity error: {\"error\":{\"message\":\"Invalid model 'llama-3.1-sonar-small-128k-online'. Permitted models can be found in the documentation at https://docs.perplexity.ai/docs/getting-started/models.\",\"type\":\"invalid_model\",\"code\":400}}"
+        },
+        "Indian poker app without friends": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Perplexity error: {\"error\":{\"message\":\"Invalid model 'llama-3.1-sonar-small-128k-online'. Permitted models can be found in the documentation at https://docs.perplexity.ai/docs/getting-started/models.\",\"type\":\"invalid_model\",\"code\":400}}"
+        },
+        "blind man's bluff card game app Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Perplexity error: {\"error\":{\"message\":\"Invalid model 'llama-3.1-sonar-small-128k-online'. Permitted models can be found in the documentation at https://docs.perplexity.ai/docs/getting-started/models.\",\"type\":\"invalid_model\",\"code\":400}}"
+        },
+        "best offline card game Android free": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Perplexity error: {\"error\":{\"message\":\"Invalid model 'llama-3.1-sonar-small-128k-online'. Permitted models can be found in the documentation at https://docs.perplexity.ai/docs/getting-started/models.\",\"type\":\"invalid_model\",\"code\":400}}"
+        },
+        "how to play Indian poker on Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Perplexity error: {\"error\":{\"message\":\"Invalid model 'llama-3.1-sonar-small-128k-online'. Permitted models can be found in the documentation at https://docs.perplexity.ai/docs/getting-started/models.\",\"type\":\"invalid_model\",\"code\":400}}"
+        },
+        "free single player card game Android no wifi": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Perplexity error: {\"error\":{\"message\":\"Invalid model 'llama-3.1-sonar-small-128k-online'. Permitted models can be found in the documentation at https://docs.perplexity.ai/docs/getting-started/models.\",\"type\":\"invalid_model\",\"code\":400}}"
+        }
+      }
+    },
+    "grok": {
+      "name": "Grok",
+      "queries": {
+        "best single player Indian poker app for Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Grok error: {\"code\":\"invalid-argument\",\"error\":\"Model not found: grok-beta\"}"
+        },
+        "Indian poker app without friends": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Grok error: {\"code\":\"invalid-argument\",\"error\":\"Model not found: grok-beta\"}"
+        },
+        "blind man's bluff card game app Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Grok error: {\"code\":\"invalid-argument\",\"error\":\"Model not found: grok-beta\"}"
+        },
+        "best offline card game Android free": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Grok error: {\"code\":\"invalid-argument\",\"error\":\"Model not found: grok-beta\"}"
+        },
+        "how to play Indian poker on Android": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Grok error: {\"code\":\"invalid-argument\",\"error\":\"Model not found: grok-beta\"}"
+        },
+        "free single player card game Android no wifi": {
+          "mentioned": false,
+          "rank": null,
+          "attributes": [],
+          "competitors": [],
+          "error": "Grok error: {\"code\":\"invalid-argument\",\"error\":\"Model not found: grok-beta\"}"
+        }
+      }
+    }
+  }
+}
