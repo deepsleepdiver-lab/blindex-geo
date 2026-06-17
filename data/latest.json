@@ -1,6 +1,6 @@
 {
   "date": "2026-06-17",
-  "timestamp": "2026-06-17T03:13:16.030Z",
+  "timestamp": "2026-06-17T03:24:31.452Z",
   "results": {
     "chatgpt": {
       "name": "ChatGPT",
@@ -10,33 +10,33 @@
           "rank": null,
           "attributes": [],
           "competitors": [
-            "indian poker"
+            "indian poker",
+            "zynga"
           ],
-          "response_snippet": "For single-player Indian poker on Android, you might want to check out **PokerKing** and **PokerBaazi**. Both apps offer a variety of poker games, including Texas Hold'em and Omaha, and have features that cater to Indian players. \n\n**PokerKing** is known for its user-friendly interface and offers a "
+          "response": "For single-player Indian poker on Android, you might want to check out **PokerStars** and **Zynga Poker**. \n\n1. **PokerStars**: This app offers a variety of poker games, including Texas Hold'em and Omaha. While it is primarily known for its multiplayer features, you can also practice against AI opponents.\n\n2. **Zynga Poker**: This is a popular social poker game where you can play against AI or friends. It has a user-friendly interface and allows you to play Texas Hold'em in a casual setting.\n\n3. **Ultimate Poker**: This app focuses on providing a single-player experience with various poker formats and challenges.\n\nThese apps should give you a good experience for playing poker solo on your Android device!"
         },
         "Indian poker app without friends": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [
-            "indian poker",
-            "zynga"
+            "indian poker"
           ],
-          "response_snippet": "If you're looking for Indian poker apps that allow you to play without needing to invite friends, there are several options available. Here are a few popular ones:\n\n1. **PokerBaazi**: This app offers a variety of poker games, including Texas Hold'em and Omaha. You can join public tables and tourname"
+          "response": "If you're looking for Indian poker apps that allow you to play without needing to invite friends, there are several options you can consider:\n\n1. **PokerBaazi**: This is a popular poker app in India where you can join various cash games and tournaments without needing to invite friends. You can play against random players from around the country.\n\n2. **Adda52**: Another well-known platform, Adda52 offers a variety of poker games and tournaments. You can easily join tables and play with players from all over, without the need for friends.\n\n3. **Khelplay Poker**: This app allows you to play poker online with random players. You can join different tables and participate in tournaments without having to invite anyone.\n\n4. **PokerStars India**: PokerStars is a global name in online poker and has a dedicated platform for Indian players. You can join games and tournaments with players from around the world.\n\n5. **9stacks**: This app is user-friendly and offers a variety of poker games. You can play against other players without needing to set up games with friends.\n\nThese apps typically require you to create an account, and you might need to verify your identity to comply with regulations. Always make sure to play responsibly!"
         },
         "blind man's bluff card game app Android": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [],
-          "response_snippet": "For playing Blind Man's Bluff on Android, you can try the app called **\"Blind Man's Bluff\"** available on the Google Play Store. This app captures the essence of the traditional card game and allows you to play with friends or against AI. \n\nAnother option is to use general card game apps like **\"Car"
+          "response": "For a game like Blind Man's Bluff, you might want to check out **\"Blindfold Games\"** which offers a variety of card games designed for visually impaired players. While it may not be specifically named Blind Man's Bluff, it provides similar gameplay experiences with accessibility in mind.\n\nAnother option is **\"Card Games\"** by Tapps Games, which includes various classic card games, though it may not have a specific Blind Man's Bluff mode. \n\nYou can also explore **\"Uno\"** or **\"Card Party\"**, which are popular card games that can be played with friends and may offer similar social interactions. \n\nMake sure to check the Google Play Store for the latest updates and user reviews to find the best fit for your needs!"
         },
         "best offline card game Android free": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [],
-          "response_snippet": "If you're looking for great offline card games for Android that are free, here are some top recommendations:\n\n1. **Hearthstone** - While primarily known for its online play, Hearthstone does offer a single-player mode where you can play against AI opponents. It's a fun collectible card game with a r"
+          "response": "If you're looking for great offline card games for Android that are free, here are a few recommendations:\n\n1. **Hearthstone** - While primarily known for its online play, Hearthstone does offer a single-player mode where you can play against AI opponents. It's a collectible card game with a rich strategy and engaging mechanics.\n\n2. **Solitaire** - There are many Solitaire apps available, but one of the most popular is **Solitaire by MobilityWare**. It offers classic Solitaire gameplay and can be played offline.\n\n3. **Card Games: Rummy, Gin Rummy, and more** - The app **Card Games by Gismart** includes various card games like Rummy, Gin Rummy, and others that you can play offline.\n\n4. **Uno!™** - While it has an online multiplayer component, you can also play Uno against AI opponents offline. It's a fun and classic card game that’s easy to pick up.\n\n5. **Durak** - This is a popular Russian card game that you can play offline against AI. There are several apps available, such as **Durak by Vseigry**.\n\n6. **Blackjack 21** - If you enjoy casino-style games, the **Blackjack 21** app allows you to play offline and practice your skills without needing an internet connection.\n\nThese games should provide you with plenty of entertainment while you're offline!"
         },
         "how to play Indian poker on Android": {
           "mentioned": false,
@@ -46,14 +46,14 @@
             "indian poker",
             "zynga"
           ],
-          "response_snippet": "To play Indian Poker on your Android device, you can use various apps that support poker games. Indian Poker, also known as Blind Man's Bluff, is typically played with a standard deck of cards where players place a card on their forehead without looking at it, and they can see everyone else's cards."
+          "response": "To play Indian Poker on your Android device, you can use a few different apps that allow for poker games, including Indian Poker or similar variants. Here are some options:\n\n1. **PokerStars**: While primarily known for Texas Hold'em, PokerStars has a variety of poker games and you can set up private tables to play Indian Poker with friends.\n\n2. **Zynga Poker**: This app is popular for casual poker games and allows you to create private tables where you can play different variants, including Indian Poker.\n\n3. **888poker**: This app offers a wide range of poker games and you can also create private games with friends. You might need to check if you can customize the game rules to fit Indian Poker.\n\n4. **Home Games on Poker Apps**: Many poker apps like **Partypoker** and **GGPoker** offer home game features where you can set up your own rules and invite friends, which can be adapted for Indian Poker.\n\nTo play Indian Poker specifically, you might need to explain the rules to your friends if the app doesn't have it as a standard game. Indian Poker typically involves players placing a card on their forehead without looking at it, while betting based on what they think others have. \n\nMake sure to check the app's features and see if they allow for custom game rules. Enjoy your game!"
         },
         "free single player card game Android no wifi": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [],
-          "response_snippet": "If you're looking for free single-player card games on Android that don't require Wi-Fi, here are a few great options:\n\n1. **Solitaire** - This classic card game is available in various versions. You can find many free apps like \"Solitaire by MobilityWare\" or \"Solitaire Collection\" that offer a grea"
+          "response": "If you're looking for free single-player card games on Android that don't require Wi-Fi, here are a few great options:\n\n1. **Solitaire** - This classic game is available in many variations. You can find several free versions on the Play Store, such as \"Solitaire by MobilityWare\" or \"Solitaire - Classic Card Game.\"\n\n2. **Spider Solitaire** - Another popular variant of Solitaire, \"Spider Solitaire\" by MobilityWare offers a great single-player experience without needing an internet connection.\n\n3. **Card Thief** - This is a unique blend of card game and stealth mechanics. You play as a thief trying to steal from a deck of cards. It's free to play with optional in-app purchases.\n\n4. **Hearthstone** - While primarily known for its multiplayer mode, Hearthstone offers a single-player mode called \"Dungeon Run\" that you can play offline once downloaded.\n\n5. **Ascension: Deckbuilding Game** - This is a deck-building card game that you can play solo. The base game is free, and it offers a rich single-player experience.\n\n6. **Fairway Solitaire** - This combines solitaire with golf, providing a fun twist on the classic game. It’s free to play and works offline.\n\nAll of these games should provide you with hours of entertainment without needing an internet connection. Enjoy playing!"
         }
       }
     },
@@ -67,30 +67,31 @@
           "competitors": [
             "indian poker"
           ],
-          "response_snippet": "# Best Single Player Indian Poker Apps for Android\n\nHere are the top options:\n\n## **Teen Patti by Moonfrog Labs**\n- Most popular choice for single-player Teen Patti\n- Good AI opponents with varying difficulty levels\n- Clean interface and smooth gameplay\n- Free with optional in-app purchases\n\n## **3 "
+          "response": "# Best Single Player Indian Poker Apps for Android\n\nHere are the top options:\n\n## **Teen Patti by Octro**\n- Most popular choice for single-player Indian poker\n- Offers AI opponents at various difficulty levels\n- Good graphics and smooth gameplay\n- Free to play with in-app purchases\n- Highly rated on Google Play Store\n\n## **Adda52 Teen Patti**\n- Professional-grade app from a licensed platform\n- Strong AI opponents\n- Practice mode available\n- Secure and regulated\n\n## **PokerBaazi**\n- Good single-player practice modes\n- Variety of game formats\n- Beginner-friendly tutorials\n- Legitimate and licensed\n\n## **My Adda - Teen Patti & Rummy**\n- Multiple Indian card games in one app\n- Good AI difficulty settings\n- Offline play available\n- Casual and fun interface\n\n## **My Recommendation**\n**Teen Patti by Octro** is your best bet because:\n- Easiest to learn\n- Most polished experience\n- Largest player base (good for learning)\n- Free to try extensively\n- Best single-player AI\n\n**Note:** Make sure to download only from the official Google Play Store and check for proper licenses if playing for real money, as regulations vary by region in India."
         },
         "Indian poker app without friends": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [
-            "indian poker"
+            "indian poker",
+            "zynga"
           ],
-          "response_snippet": "# Indian Poker Apps to Play Solo\n\nHere are some legitimate options where you can play Indian poker (Teen Patti) without needing friends:\n\n## Real Money Apps\n1. **PokerBaazi** - Offers Teen Patti tables with various stakes and tournaments\n2. **Adda52** - Good selection of Teen Patti games with differ"
+          "response": "# Indian Poker Apps Without Friends\n\nHere are some popular apps where you can play Indian poker (also called Teen Patti) solo or against AI/random players:\n\n## Top Options:\n\n1. **Teen Patti by Moonfrog Labs**\n   - One of the most popular Teen Patti apps in India\n   - Play against AI opponents\n   - Has single-player modes and tournaments\n   - Free to download\n\n2. **Zynga Poker**\n   - Classic poker app with multiplayer options\n   - Can play against AI/computer\n   - Available on both iOS and Android\n   - Tournament modes available\n\n3. **Adda52**\n   - Indian poker platform\n   - Multiple game variants including Teen Patti\n   - Play cash games against random players\n   - Regulated platform\n\n4. **PokerBaazi**\n   - Dedicated Indian poker platform\n   - Can play against random opponents\n   - No need to invite friends\n   - Various stake levels available\n\n5. **Spartan Poker**\n   - Indian poker app with diverse games\n   - Matchmaking with random players\n   - Tournaments and cash games\n   - Active player base\n\n## Important Notes:\n- Check if real-money games are legal in your state (regulations vary across India)\n- Many apps offer play-money versions for practice\n- Download only from official app stores (Google Play, App Store)\n- Be cautious about responsible gaming\n\nWould you like recommendations for specific game types or stake levels?"
         },
         "blind man's bluff card game app Android": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [],
-          "response_snippet": "# Blind Man's Bluff Card Game Apps for Android\n\nHere are some options for playing Blind Man's Bluff (or similar bluffing card games) on Android:\n\n## Dedicated Bluff Games\n- **Cheat!** - A direct implementation of the bluffing card game where you try to trick opponents into calling your bluff\n- **Blu"
+          "response": "# Blind Man's Bluff Card Game Apps for Android\n\nHere are some options to play Blind Man's Bluff on Android:\n\n## Dedicated Apps\n\n1. **Blind Man's Bluff** - Search for this directly in the Google Play Store. There are several versions available, though quality varies.\n\n2. **Card Games 101** - Includes Blind Man's Bluff along with other classic card games in one app.\n\n## General Card Game Platforms\n\n- **Tabletopia** - A digital tabletop platform that includes various card games and allows you to set up Blind Man's Bluff with friends\n- **Board Game Arena** - Offers many classic games, though availability varies\n- **Ludoteka** - Free platform with multiple card games\n\n## Alternative Approach\n\nSince Blind Man's Bluff is relatively simple (basically a guessing/matching game with cards), you might also consider:\n- **Uno** or similar matching apps if you want something with similar gameplay\n- Playing via **Zoom/video call** with a friend using a physical deck (rules are easy to learn)\n\n## Tips for Finding the Right App\n- Check reviews and ratings carefully\n- Look for apps with recent updates\n- Try free versions first before paying\n- Read the rules description to ensure it matches the version you want\n\nWould you like clarification on how the game is played, or do you need help finding a specific variation?"
         },
         "best offline card game Android free": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [],
-          "response_snippet": "# Best Offline Card Games for Android (Free)\n\nHere are some excellent options:\n\n## Top Picks\n\n**Solitaire Stories**\n- Classic solitaire with a relaxing narrative\n- Beautiful visuals and no ads\n- Completely offline\n\n**Poker Solitaire**\n- Combines poker hand rankings with solitaire\n- Puzzle-style game"
+          "response": "# Best Offline Card Games for Android (Free)\n\nHere are some excellent options:\n\n## Strategy & Deck Building\n- **Solitaire Stories** - Beautiful solitaire variants with a relaxing story mode\n- **Inscryption** - Deck-building roguelike with incredible atmosphere (paid, but highly recommended)\n- **Hearthstone** - Collectible card game with offline adventure modes (free-to-play)\n\n## Classic Card Games\n- **Solitaire Grand Harvest** - Multiple solitaire variants, very polished\n- **FreeCell** - Classic free solitaire variant\n- **Hearts & Spades** - Play against AI opponents (completely offline)\n\n## Roguelike Card Games\n- **Peglin** - Pachinko meets roguelike deck-builder (paid)\n- **Duelyst** - Turn-based strategy card game with offline play\n\n## Light & Fun\n- **Poker Bros** - Multiplayer offline poker with AI\n- **Card Solitaire** - Minimalist solitaire with various modes\n\n## My Top Pick\n**Solitaire Stories** is probably your best bet—it's completely free, ad-supported, has beautiful graphics, and offers dozens of card game variants beyond basic solitaire.\n\n**Pro tip:** Search your phone's app store for \"offline card games\" and filter by free—you'll find many hidden gems with good ratings.\n\nWhat type of card games interest you most? (Strategy, classic solitaire, multiplayer, etc.)"
         },
         "how to play Indian poker on Android": {
           "mentioned": false,
@@ -100,14 +101,14 @@
             "indian poker",
             "zynga"
           ],
-          "response_snippet": "# How to Play Indian Poker on Android\n\nIndian Poker is a simple bluffing card game. Here's how to play it:\n\n## Basic Rules\n\n1. **Setup**: Each player gets one card placed on their forehead (face-out) without seeing it\n2. **The Twist**: You can see everyone else's card but not your own\n3. **Betting**"
+          "response": "# How to Play Indian Poker on Android\n\nIndian Poker is a fun bluffing card game. Here's how to play it:\n\n## Game Rules\n\n1. **Setup**: Each player gets one card placed on their forehead (face out, so they can't see it but others can)\n2. **Betting Round**: Players bet without knowing their own card value\n3. **The Catch**: You can see everyone else's cards but not your own, creating the bluffing element\n4. **Showdown**: Players reveal their cards - highest card wins the pot\n5. **Strategy**: Bluff based on other players' reactions and visible cards\n\n## Recommended Android Apps\n\n- **Poker Bros** - Offers various poker variants including options for casual play\n- **Zynga Poker** - Popular free poker app with multiple game modes\n- **Governor of Poker 3** - Features different poker games and tournaments\n- **Replay Poker** - Free poker platform with various formats\n- **Pokerstars** - One of the largest poker apps with multiple variants\n\n## Tips for Playing\n\n- Observe opponents' betting patterns\n- Don't overcommit early without seeing reactions\n- Remember visible cards to judge your odds\n- Use position to your advantage\n- Stay unpredictable with your bluffs\n\nMost of these apps offer free-to-play versions, so you can try them without spending money. Indian Poker specifically might be harder to find, but many apps let you play casual poker variants with friends."
         },
         "free single player card game Android no wifi": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [],
-          "response_snippet": "# Free Single Player Card Games for Android (No WiFi)\n\nHere are some excellent offline options:\n\n## Classic & Popular\n- **Solitaire Stories** - Beautiful solitaire variations with a story mode\n- **Solitaire Grand Harvest** - Multiple solitaire games, fully playable offline\n- **FreeCell Solitaire** -"
+          "response": "# Free Single Player Card Games for Android (No WiFi)\n\nHere are some excellent options:\n\n## Classic Card Games\n- **Solitaire Grand Harvest** - Multiple solitaire variants with daily challenges\n- **Microsoft Solitaire Collection** - Classic solitaire games (Klondike, FreeCell, Pyramid, etc.)\n- **Solitaire Stories** - Solitaire with a story progression system\n\n## Deck-Building Games\n- **Slay the Spire** - Popular roguelike deck-building game (has free version)\n- **Inscryption** - Strategic card game with puzzles\n\n## Other Card Games\n- **Poker Heat** - Single player poker variations\n- **Freecell Solitaire** - FreeCell variant\n- **Spider Solitaire** - Classic spider solitaire\n- **Uno** - Single player against AI\n\n## Tips\n- Most of these work completely offline once downloaded\n- Download before losing WiFi to ensure you have everything\n- Check that games don't require constant internet connection\n- Free versions may have ads, but gameplay isn't affected\n\n**My top pick:** **Slay the Spire** if you want something engaging, or **Microsoft Solitaire Collection** if you prefer traditional card games.\n\nMost are available on Google Play Store. Just verify the offline capability before downloading!"
         }
       }
     },
@@ -121,44 +122,44 @@
           "competitors": [
             "indian poker"
           ],
-          "response_snippet": "When people search for \"Indian Poker\" on Android, they are usually looking for **Teen"
+          "response": "To give you the best recommendation, it’s important to clarify what you mean by \"Indian Poker"
         },
         "Indian poker app without friends": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
-          "competitors": [
-            "indian poker"
-          ],
-          "response_snippet": "Here are the best Indian poker apps where you can play against **random players online instantly**, without"
+          "competitors": [],
+          "response": "If you want to play poker online in India against random players (without needing to invite friends or join"
         },
         "blind man's bluff card game app Android": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [],
-          "response_snippet": " What the game is** (briefly, to ensure we are on the same page).\n"
+          "response": "It sounds like you are looking for a **Blind Man’s Bluff** (also known as **"
         },
         "best offline card game Android free": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [],
-          "response_snippet": "To give you the best recommendation, it helps to divide \"card games\" into two main categories"
+          "response": "To give you the best recommendations, I’ve broken down the best **free, offline"
         },
         "how to play Indian poker on Android": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
-          "competitors": [],
-          "response_snippet": ")**\n        *   *Concept:* The Android phone *is* the card.\n"
+          "competitors": [
+            "indian poker"
+          ],
+          "response": "**Indian Poker** (also known as *Blind Man’s Bluff* or *Forehead Poker"
         },
         "free single player card game Android no wifi": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [],
-          "response_snippet": "Simple, pure offline)*\n        *   **Solitaire by MobilityWare** or **Microsoft Sol"
+          "response": "Here is a curated list of the best **free, single-player card games for Android"
         }
       }
     },
@@ -172,7 +173,7 @@
           "competitors": [
             "indian poker"
           ],
-          "response_snippet": "If you want a **single-player poker app for Android** with an **Indian-friendly** option, **Poker Offline** is the clearest match from the results because it is explicitly an offline poker app and includes Texas Hold’em plus other single-player-style modes like Sit-N-Go and mini-games.[1]\n\nIf you me"
+          "response": "For **single-player** on Android, **Mega Hit Poker: Texas Holdem** is the strongest match from the results because it is a mobile poker app on Google Play and is designed for handheld play with a large player base, making it a good casual offline/solo-style option to start with.[2]\n\nIf you mean the **best Indian poker app with casual beginner-friendly play**, **PokerBaazi** is the clearest India-focused recommendation in the results: a Reddit user specifically called out its smooth UI, fast gameplay, and mix of freerolls, cash tables, and tournaments for beginners and casual players.[1]\n\nA practical shortlist from the results would be:\n\n- **PokerBaazi** — best if you want an **India-focused** app and beginner-friendly experience.[1]\n- **Mega Hit Poker: Texas Holdem** — best if you want a **single-player-friendly mobile poker app** on Android.[2]\n- **World Poker Club** — another Android poker game option from Google Play, though the results do not specifically identify it as India-focused or single-player-first.[5]\n\nIf you want, I can also narrow this down by **offline play**, **real-money legality in India**, or **best for beginners only**."
         },
         "Indian poker app without friends": {
           "mentioned": false,
@@ -181,21 +182,23 @@
           "competitors": [
             "indian poker"
           ],
-          "response_snippet": "If you want an **Indian poker app that you can play without friends**, look for one with **offline/bot play** or **solo online matchmaking**. From the results, **Teen Patti: Indian Poker** and **Poker Offline** both support play without inviting friends, while **EasyPoker** and **Pokerrrr2** are mai"
+          "response": "If you want an **Indian poker / Teen Patti app that works without friends**, the best fit from these results is **Teen Patti: Indian Poker**, because it includes **online matches with real players** and **offline practice mode**, so you do *not* need to invite friends to play[1].\n\nOther options that also work without a friends-only setup:\n\n- **Poker Offline**: supports **offline play with bots/computers** and online play with players worldwide[7].\n- **Pokerrrr 2**: mainly designed for **playing with friends**, so it is *less suitable* if you want solo play without inviting others[3].\n- **EasyPoker**: also focused on **playing poker with friends**, not solo/public matchmaking[2][4][6].\n\nIf by “Indian poker” you mean **Teen Patti**, then **Teen Patti: Indian Poker** is the clearest match for playing alone or with random online players[1]. If you mean the separate card game where you wear a card on your forehead, that’s a different game entirely[8]."
         },
         "blind man's bluff card game app Android": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
-          "competitors": [],
-          "response_snippet": "If you want an **Android app for Blind Man’s Bluff**, the closest match in the search results is **Bluff Online - Card game** on Google Play, which is a bluffing card game where players put cards face down and call a value.[3]\n\nA few important clarifications:\n\n- **Blind Man’s Bluff** is the game whe"
+          "competitors": [
+            "indian poker"
+          ],
+          "response": "If you want an **Android app for the card game “Blind Man’s Bluff”**, the closest match in the results is **Bluff Online - Card game** on Google Play.[3]\n\nA few clarifications may help:\n- **Blind Man’s Bluff** is also used to refer to a poker-style game where you see everyone else’s card but not your own.[10]\n- The Google Play app **Bluff Online - Card game** says the goal is to get rid of your cards, with face-down play and bluffing mechanics, so it is **related to bluff-style card play** but may not be the exact Blind Man’s Bluff variant you mean.[3]\n- Another Android option mentioned in the results is **Bluff** by Oneiric Gaming via Softonic, which is described as a multiplayer card game with online play and chat.[2]\n\nIf you want, I can help you find:\n- the **best Android app specifically for Blind Man’s Bluff / Indian Poker**\n- a **2-player offline version**\n- or a **multiplayer online bluff card game**"
         },
         "best offline card game Android free": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [],
-          "response_snippet": "If you want the **best free offline card game on Android**, **Spades - Offline Card Games** is a strong pick because it is free and specifically designed for offline play on Android phones and tablets.[3]\n\nOther good **free offline** options are:\n\n- **Offline Card Games (free no wifi) feat. Gin Rumm"
+          "response": "For a **free offline card game on Android**, the safest picks from the results are **Spades - Offline Card Games** and **Offline Card Games (free no wifi) feat. Gin Rummy**.[3][1]\n\n- **Spades - Offline Card Games**: explicitly described on Google Play as a free Spades game for phones and tablets.[3]\n- **Offline Card Games (free no wifi) feat. Gin Rummy**: bundles multiple offline card games, including **Casino Gin Rummy**, **Freecell**, and **Spider**, and states that it requires no Wi‑Fi or internet connection.[1]\n- **Ultimate Offline Card Games**: offers several offline classics such as **Rummy 500**, **Canasta**, **Solitaire**, **Spades**, and **Hearts**.[7]\n\nIf you want the **best single choice**, I’d pick **Offline Card Games (free no wifi) feat. Gin Rummy** because it gives you the most variety while still being offline and free.[1]\n\nIf you want, I can also narrow this down by **best for solitaire**, **best for classic card games**, or **best without ads**."
         },
         "how to play Indian poker on Android": {
           "mentioned": false,
@@ -204,14 +207,14 @@
           "competitors": [
             "indian poker"
           ],
-          "response_snippet": "To play Indian Poker on Android, you can download dedicated apps like **Teen Patti: Indian Poker** (available via Google Play or as an APK) [1] or the standalone **Indian poker** app on Google Play, which simulates the card-on-forehead game for multiple players [2].\n\n### How to Play Indian Poker (Th"
+          "response": "You can play **Indian Poker on Android** in two main ways: as a **mobile card game app** or as the **classic forehead card game** with friends using your phone for rules/reference. Google Play lists an app called **Indian poker** that says it’s a multiplayer playing-cards game, and another Android option is **Teen Patti: Indian Poker**.[2][1]\n\nIf you mean the **classic game**, the basic rules are:\n\n- Each player antes first.[6][7]\n- Deal **one card face down** to each player.[6][7]\n- Without looking at your own card, place it on your forehead so everyone else can see it.[6][7]\n- There is **one betting round**.[6][7]\n- After betting, everyone reveals their cards; the **highest card wins the pot**.[6][7]\n- In some variants, suits rank too, with **spades high, then hearts, diamonds, clubs**.[7]\n\nIf you want to play on Android, here are the simplest options:\n\n- **Search Google Play for “Indian poker”** and install the app if you want a digital version.[2]\n- **Use Teen Patti: Indian Poker** if you want a poker-style Android game with friend play and bonus features.[1]\n- If you want the **party/card-table version**, use any standard deck and the steps above; Android is only needed for instructions or a timer.[6][7]\n\nIf you want, I can also give you:\n- a **step-by-step setup for 2 players**\n- the **best Android apps** for Indian Poker\n- the **difference between Indian Poker and Teen Patti**"
         },
         "free single player card game Android no wifi": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [],
-          "response_snippet": "If you want a **free single-player card game on Android that works without Wi‑Fi**, good options from the results are **Solitaire - Offline Card Games** and **Spades - Offline Card Games** by SNG Games, both described as offline and requiring no internet connection.[2][4]\n\nA few solid picks:\n\n- **So"
+          "response": "If you want a **free single-player card game for Android that works without Wi‑Fi**, the safest picks from the results are **SNG Solitaire** and **Spades - Offline Card Games**. Both are described as free, offline, and usable without an internet connection on Android.[2][4]\n\nGood options from the results:\n\n- **Solitaire - Offline Card Games** — classic Solitaire/Klondike, free, single-player, and playable without Wi‑Fi.[2][5]\n- **Spades - Offline Card Games** — free offline Spades with AI opponents; this is single-player against computer players rather than human online play.[4]\n- **Offline Card Games (free no wifi) feat. Gin Rummy** — includes several offline modes such as Freecell, Spider Solitaire, Klondike Solitaire, and Video Poker.[1]\n- **Lifewire’s offline card-game list** also points to offline card games for mobile, but the specific Android app listings above are the most directly relevant to your request.[8]\n\nIf you want the **closest match to “card game + single player + no Wi‑Fi”**, I’d start with **Solitaire - Offline Card Games** first, then **Offline Card Games (free no wifi)** if you want more than one game in one app.[2][1]\n\nIf you want, I can narrow this down to:\n- **best for classic Solitaire**\n- **best for poker/rummy**\n- **best with no ads**\n- **best offline deck-builder style card games**"
         }
       }
     },
@@ -222,43 +225,51 @@
           "mentioned": false,
           "rank": null,
           "attributes": [],
-          "competitors": [],
-          "error": "Grok error: {\"code\":\"permission-denied\",\"error\":\"Your newly created team doesn't have any credits or licenses yet. You can purchase those on https://console.x.ai/team/2e9d460e-086c-4b50-ac2c-f7c3f4d6daf5.\"}"
+          "competitors": [
+            "indian poker"
+          ],
+          "response": "**A solid pick for single-player Indian Poker (Teen Patti) on Android is \"Teen Patti by Octro\".**\n\nIt includes a dedicated **Practice/Single Player mode** where you play against AI bots with adjustable difficulty, no real-money pressure, and smooth gameplay that feels like real Teen Patti. The app is lightweight, regularly updated, and doesn’t push online tables if you just want offline practice.\n\n### Other good single-player options:\n- **Teen Patti Gold** – Has a decent “Practice” mode against AI with nice graphics and fast rounds.\n- **3 Patti Blue** – Simple offline-friendly Teen Patti with single-player tables and minimal ads.\n\nJust search these on the Play Store and look for the “Practice” or “Single Player” section inside the app. Avoid real-money versions if you strictly want offline/single-player only."
         },
         "Indian poker app without friends": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
-          "competitors": [],
-          "error": "Grok error: {\"code\":\"permission-denied\",\"error\":\"Your newly created team doesn't have any credits or licenses yet. You can purchase those on https://console.x.ai/team/2e9d460e-086c-4b50-ac2c-f7c3f4d6daf5.\"}"
+          "competitors": [
+            "indian poker"
+          ],
+          "response": "**Recommended apps for playing Indian Poker (Teen Patti) without needing friends:**\n\nHere are some popular, well-rated Teen Patti apps that let you play solo against bots/AI or join public tables with random online players:\n\n- **Teen Patti Gold** – Excellent for solo play with multiple bot tables and practice modes. You can also join quick public matches without adding anyone.\n- **Octro Teen Patti** – Strong AI opponents in practice mode plus fast public tables. No friend invites required.\n- **3 Patti Blue** – Clean interface with dedicated single-player/bot modes and random online matchmaking.\n- **MPL (Mobile Premier League)** – Has Teen Patti sections where you play against random users or in tournaments without needing friends.\n\nAll these are available on the Google Play Store and support playing immediately without adding contacts. Start with **Teen Patti Gold** or **Octro Teen Patti** if you want smooth bot practice first."
         },
         "blind man's bluff card game app Android": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
-          "competitors": [],
-          "error": "Grok error: {\"code\":\"permission-denied\",\"error\":\"Your newly created team doesn't have any credits or licenses yet. You can purchase those on https://console.x.ai/team/2e9d460e-086c-4b50-ac2c-f7c3f4d6daf5.\"}"
+          "competitors": [
+            "indian poker"
+          ],
+          "response": "You can find Blind Man's Bluff (also called Indian Poker or Forehead Poker) apps on the Google Play Store. Try searching for **\"Blind Man's Bluff Poker\"** or **\"Indian Poker Blind Bluff\"** — a couple of solid options include:\n\n- **Blind Man's Bluff** by PeakW Games (simple, straightforward version with AI opponents)\n- **Indian Poker - Blind Bluff** by Card Game Studio (includes multiplayer modes and customizable rules)\n\nBoth are free with optional in-app purchases. Just make sure to check recent reviews for the latest versions compatible with your Android device."
         },
         "best offline card game Android free": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [],
-          "error": "Grok error: {\"code\":\"permission-denied\",\"error\":\"Your newly created team doesn't have any credits or licenses yet. You can purchase those on https://console.x.ai/team/2e9d460e-086c-4b50-ac2c-f7c3f4d6daf5.\"}"
+          "response": "**Best free offline card games for Android:**\n\nHere are some of the top-rated, truly offline (no internet needed) card games:\n\n### Top Recommendations\n\n| Rank | App Name | Game Type | Why It's Good | Play Store Notes |\n|------|----------|-----------|---------------|------------------|\n| 1 | **Solitaire** (by MobilityWare) | Klondike Solitaire | Clean interface, smooth gameplay, multiple modes | Free with ads, no internet required |\n| 2 | **Spider Solitaire** (by Brainium) | Spider Solitaire | Excellent UI, different difficulty levels | Free version available, fully offline |\n| 3 | **FreeCell** (by MobilityWare) | FreeCell | Very polished, undo feature, relaxing | Free with ads, works offline |\n| 4 | **Hearts** (by AI Factory) | Hearts | Smart AI, multiple game modes | Completely free + offline |\n| 5 | **Spades** (by AI Factory) | Spades | Good AI opponents, clean design | Free and offline |\n\n### Quick Suggestions by Preference:\n- **Classic single-player experience** → Go with **Solitaire** (MobilityWare)\n- **More challenging** → **Spider Solitaire** (Brainium)\n- **Strategic thinking** → **FreeCell** (MobilityWare)\n- **Multiplayer-style with AI** → **Hearts** or **Spades** (AI Factory)\n\nAll these apps work fully offline after downloading and are free (they may show ads, but you can play without paying). \n\nWould you like recommendations for a specific type of card game (like Rummy, Poker, or Euchre)?"
         },
         "how to play Indian poker on Android": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
-          "competitors": [],
-          "error": "Grok error: {\"code\":\"permission-denied\",\"error\":\"Your newly created team doesn't have any credits or licenses yet. You can purchase those on https://console.x.ai/team/2e9d460e-086c-4b50-ac2c-f7c3f4d6daf5.\"}"
+          "competitors": [
+            "indian poker"
+          ],
+          "response": "**Indian Poker** on Android usually refers to **Teen Patti** (also called Indian Poker or 3 Patti), a popular Indian card game similar to poker but with simpler 3-card hands.\n\n### Best Apps to Play Indian Poker (Teen Patti) on Android\n\nHere are the most popular and well-rated apps available on the Google Play Store:\n\n- **Teen Patti by Octro** – Clean interface, good for beginners, real-time multiplayer.\n- **Teen Patti Gold** – Very popular with large player base, multiple game modes, and bonuses.\n- **3 Patti Circle** – Fast gameplay and social features.\n- **Teen Patti Master** – Lots of tables and tournaments.\n\n### How to Start Playing\n\n1. Open the **Google Play Store** on your Android phone.\n2. Search for one of the apps above (e.g., “Teen Patti by Octro” or “Teen Patti Gold”).\n3. Install the app and open it.\n4. Sign up using your mobile number or Google/Facebook account.\n5. You’ll usually get free chips to start playing.\n\n### Quick Rules of Indian Poker (Teen Patti)\n\n- Each player gets **3 cards**.\n- You bet on who has the best hand.\n- Hand rankings (highest to lowest):\n  - Trail / Set (three of a kind)\n  - Pure Sequence (straight flush)\n  - Sequence (straight)\n  - Color (flush)\n  - Pair\n  - High Card\n- Common actions: **Seen** (look at your cards) or **Blind** (play without seeing cards for lower bets).\n\n### Tips for Beginners\n\n- Start with **practice/free tables** to learn.\n- Play **Blind** when you have good chips to build pots.\n- Watch other players’ betting patterns.\n\nWould you like me to recommend the best app for beginners or explain the rules in more detail?"
         },
         "free single player card game Android no wifi": {
           "mentioned": false,
           "rank": null,
           "attributes": [],
           "competitors": [],
-          "error": "Grok error: {\"code\":\"permission-denied\",\"error\":\"Your newly created team doesn't have any credits or licenses yet. You can purchase those on https://console.x.ai/team/2e9d460e-086c-4b50-ac2c-f7c3f4d6daf5.\"}"
+          "response": "Here are some good **free single-player card game** apps for Android that work completely offline (no WiFi needed):\n\n### Top Recommendations:\n\n| App Name | Game Type | Notes |\n|---------|-----------|-------|\n| **Solitaire** (by MobilityWare) | Klondike Solitaire | Clean interface, fully playable offline, free with ads |\n| **Microsoft Solitaire Collection** | Klondike, Spider, FreeCell, Pyramid, TriPeaks | Microsoft’s official app, great quality, works offline |\n| **Spider Solitaire** (by MobilityWare) | Spider Solitaire | Excellent offline Spider game |\n| **FreeCell** (by MobilityWare) | FreeCell | Classic FreeCell with smooth gameplay |\n| **Pyramid Solitaire** (by Brainium) | Pyramid | Simple and addictive, completely offline |\n| **Classic Solitaire** (by Brainium) | Klondike | Another solid offline option from Brainium |\n\n### Quick Tips:\n- All the apps above can be played **without internet** after downloading.\n- They’re free to download and play, though most include ads (you can usually remove them with a one-time purchase if you want).\n- Avoid games that say “online” or “multiplayer” in the title if you want guaranteed offline play.\n\nWould you like recommendations for a specific type of card game (like Solitaire, FreeCell, Spider, etc.)?"
         }
       }
     }
