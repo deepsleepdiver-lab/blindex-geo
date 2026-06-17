@@ -77,30 +77,58 @@ async function queryOpenAI(query) {
   return data.choices[0].message.content;
 }
 
-// ── Anthropic / Claude (웹 검색 tool 추가) ──────────────────────────────
+// ── Anthropic / Claude (웹 검색 멀티턴 처리) ────────────────────────────
 async function queryClaude(query) {
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': process.env.ANTHROPIC_API_KEY,
-      'anthropic-version': '2023-06-01'
-    },
-    body: JSON.stringify({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 1000,
-      system: SYSTEM_PROMPT,
-      tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 3 }],
-      messages: [{ role: 'user', content: query }]
-    })
-  });
-  const data = await res.json();
-  if (!res.ok) throw new Error(`Claude error: ${JSON.stringify(data)}`);
-  // tool_use 포함 응답에서 텍스트 블록만 추출, 없으면 전체 content 합산
-  const textBlocks = data.content.filter(b => b.type === 'text').map(b => b.text);
-  if (textBlocks.length > 0) return textBlocks.join('\n');
-  // 텍스트가 없으면 tool_result까지 포함한 추가 턴 필요 없이 tool_use 이름만 반환
-  return data.content.map(b => b.type === 'tool_use' ? `[searching: ${b.input?.query || query}]` : '').join(' ');
+  const headers = {
+    'Content-Type': 'application/json',
+    'x-api-key': process.env.ANTHROPIC_API_KEY,
+    'anthropic-version': '2023-06-01'
+  };
+  const tools = [{ type: 'web_search_20250305', name: 'web_search', max_uses: 3 }];
+  let messages = [{ role: 'user', content: query }];
+
+  // 최대 5번 반복해서 tool_use → tool_result 사이클 처리
+  for (let i = 0; i < 5; i++) {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 2000,
+        system: SYSTEM_PROMPT,
+        tools,
+        messages
+      })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(`Claude error: ${JSON.stringify(data)}`);
+
+    // 최종 응답 (stop_reason이 end_turn이면 텍스트 반환)
+    if (data.stop_reason === 'end_turn') {
+      const textBlocks = data.content.filter(b => b.type === 'text').map(b => b.text);
+      return textBlocks.join('\n');
+    }
+
+    // tool_use 블록이 있으면 messages에 추가하고 계속
+    if (data.stop_reason === 'tool_use') {
+      // assistant 턴 추가
+      messages.push({ role: 'assistant', content: data.content });
+      // tool_result 턴 추가 (웹 검색은 서버사이드 처리라 빈 결과 전달)
+      const toolResults = data.content
+        .filter(b => b.type === 'tool_use')
+        .map(b => ({
+          type: 'tool_result',
+          tool_use_id: b.id,
+          content: ''
+        }));
+      messages.push({ role: 'user', content: toolResults });
+    } else {
+      // 예상치 못한 stop_reason이면 텍스트 추출 후 반환
+      const textBlocks = data.content.filter(b => b.type === 'text').map(b => b.text);
+      return textBlocks.join('\n');
+    }
+  }
+  return '';
 }
 
 // ── Google / Gemini (Google Search grounding 활성화) ──────────────────────
