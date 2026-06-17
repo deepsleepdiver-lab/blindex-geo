@@ -13,8 +13,8 @@ const QUERIES = [
   "free single player card game Android no wifi"
 ];
 
-const SYSTEM_PROMPT = `You are a helpful assistant that recommends specific mobile apps. 
-When asked about apps, recommend real, existing apps available on Google Play Store by name. 
+const SYSTEM_PROMPT = `You are a helpful assistant that recommends specific mobile apps.
+When asked about apps, recommend real, existing apps available on Google Play Store by name.
 Be specific and direct. List actual app names with brief descriptions.
 Do not ask clarifying questions - just answer with your best recommendations.`;
 
@@ -24,31 +24,24 @@ function detectMention(text) {
   const mentioned = DETECTION_KEYWORDS.some(kw => text.includes(kw));
   const lowerText = text.toLowerCase();
 
-  // Extract rank if mentioned
   let rank = null;
   if (mentioned) {
-    // Check if it's the first recommendation
     const blindexPos = lowerText.indexOf('blindex');
     const before = lowerText.substring(0, blindexPos);
     const listNumbers = before.match(/\b[1-9]\./g);
     if (listNumbers) {
       rank = listNumbers.length + 1;
     } else {
-      // Check if mentioned near the start
       rank = blindexPos < 300 ? 1 : null;
     }
   }
 
-  // Extract competitors mentioned
   const competitors = [];
-  const competitorList = ['woaahtech', 'wooahtech', 'indian poker', 'pokerbros', 'zynga'];
+  const competitorList = ['woaahtech', 'wooahtech', 'pokerbaazi', 'zynga'];
   competitorList.forEach(c => {
-    if (lowerText.includes(c) && !lowerText.includes('blindex')) {
-      competitors.push(c);
-    }
+    if (lowerText.includes(c)) competitors.push(c);
   });
 
-  // Extract attributes used to describe Blindex
   const attributes = [];
   if (mentioned) {
     const attrKeywords = ['free', 'offline', 'single-player', 'single player', 'android', 'blind', 'indian poker'];
@@ -62,7 +55,7 @@ function detectMention(text) {
   return { mentioned, rank, competitors, attributes };
 }
 
-// ── OpenAI / ChatGPT ──────────────────────────────────────────────────────
+// ── OpenAI / ChatGPT (웹 검색 모델) ───────────────────────────────────────
 async function queryOpenAI(query) {
   const res = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -71,15 +64,20 @@ async function queryOpenAI(query) {
       'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
     },
     body: JSON.stringify({
-      model: 'gpt-4o-mini',
+      model: 'gpt-4o-mini-search-preview',
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: query }
       ],
-      max_tokens: 1000,
+      max_tokens: 1000
+    })
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(`OpenAI error: ${JSON.stringify(data)}`);
+  return data.choices[0].message.content;
 }
 
-// ── Anthropic / Claude ────────────────────────────────────────────────────
+// ── Anthropic / Claude (웹 검색 tool 추가) ──────────────────────────────
 async function queryClaude(query) {
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -91,15 +89,19 @@ async function queryClaude(query) {
     body: JSON.stringify({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 1000,
+      system: SYSTEM_PROMPT,
+      tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 3 }],
       messages: [{ role: 'user', content: query }]
     })
   });
   const data = await res.json();
   if (!res.ok) throw new Error(`Claude error: ${JSON.stringify(data)}`);
-  return data.content[0].text;
+  // 웹 검색 결과 포함 응답에서 텍스트 추출
+  const textBlock = data.content.find(b => b.type === 'text');
+  return textBlock ? textBlock.text : '';
 }
 
-// ── Google / Gemini ───────────────────────────────────────────────────────
+// ── Google / Gemini (Google Search grounding 활성화) ──────────────────────
 async function queryGemini(query) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
   const res = await fetch(url, {
@@ -107,7 +109,8 @@ async function queryGemini(query) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       contents: [{ parts: [{ text: query }] }],
-      generationConfig: { maxOutputTokens: 1000, temperature: 0.3 }
+      tools: [{ google_search: {} }],
+      generationConfig: { maxOutputTokens: 1000 }
     })
   });
   const data = await res.json();
@@ -115,7 +118,7 @@ async function queryGemini(query) {
   return data.candidates[0].content.parts[0].text;
 }
 
-// ── Perplexity ────────────────────────────────────────────────────────────
+// ── Perplexity (기본적으로 웹 검색 포함) ──────────────────────────────────
 async function queryPerplexity(query) {
   const res = await fetch('https://api.perplexity.ai/chat/completions', {
     method: 'POST',
@@ -138,7 +141,7 @@ async function queryPerplexity(query) {
   return data.choices[0].message.content;
 }
 
-// ── xAI / Grok ────────────────────────────────────────────────────────────
+// ── xAI / Grok (웹 검색 활성화 - Responses API) ──────────────────────────
 async function queryGrok(query) {
   const res = await fetch('https://api.x.ai/v1/chat/completions', {
     method: 'POST',
@@ -153,7 +156,8 @@ async function queryGrok(query) {
         { role: 'user', content: query }
       ],
       max_tokens: 1000,
-      temperature: 0.3
+      temperature: 0.3,
+      search_parameters: { mode: 'on' }
     })
   });
   const data = await res.json();
@@ -162,15 +166,15 @@ async function queryGrok(query) {
 }
 
 const AI_MODELS = [
-  { id: 'chatgpt', name: 'ChatGPT', fn: queryOpenAI },
-  { id: 'claude',  name: 'Claude',  fn: queryClaude },
-  { id: 'gemini',  name: 'Gemini',  fn: queryGemini },
+  { id: 'chatgpt',    name: 'ChatGPT',    fn: queryOpenAI },
+  { id: 'claude',     name: 'Claude',     fn: queryClaude },
+  { id: 'gemini',     name: 'Gemini',     fn: queryGemini },
   { id: 'perplexity', name: 'Perplexity', fn: queryPerplexity },
-  { id: 'grok',    name: 'Grok',    fn: queryGrok },
+  { id: 'grok',       name: 'Grok',       fn: queryGrok },
 ];
 
 async function runCheck() {
-  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+  const today = new Date().toISOString().split('T')[0];
   console.log(`\n=== GEO Check: ${today} ===\n`);
 
   const results = {
@@ -197,8 +201,6 @@ async function runCheck() {
         };
 
         console.log(`  → Mentioned: ${detection.mentioned ? '✅ YES' : '❌ NO'}${detection.rank ? ` (rank #${detection.rank})` : ''}`);
-
-        // Rate limiting — 1s between calls
         await new Promise(r => setTimeout(r, 1000));
 
       } catch (err) {
@@ -214,7 +216,6 @@ async function runCheck() {
     }
   }
 
-  // Save to data/YYYY-MM-DD.json
   const dataDir = path.join(__dirname, 'data');
   if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 
@@ -222,10 +223,8 @@ async function runCheck() {
   fs.writeFileSync(outPath, JSON.stringify(results, null, 2));
   console.log(`\n✅ Saved: ${outPath}`);
 
-  // Update latest.json (always points to most recent)
   fs.writeFileSync(path.join(dataDir, 'latest.json'), JSON.stringify(results, null, 2));
 
-  // Update history index
   const indexPath = path.join(dataDir, 'index.json');
   let index = [];
   if (fs.existsSync(indexPath)) {
@@ -233,7 +232,7 @@ async function runCheck() {
   }
   if (!index.includes(today)) {
     index.unshift(today);
-    index = index.slice(0, 90); // keep last 90 days
+    index = index.slice(0, 90);
     fs.writeFileSync(indexPath, JSON.stringify(index, null, 2));
   }
 
