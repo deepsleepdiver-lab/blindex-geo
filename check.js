@@ -106,7 +106,7 @@ async function queryClaude(query) {
 
 // ── Google / Gemini ───────────────────────────────────────────────────────
 async function queryGemini(query) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
   const res = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -129,7 +129,7 @@ async function queryPerplexity(query) {
       'Authorization': `Bearer ${process.env.PERPLEXITY_API_KEY}`
     },
     body: JSON.stringify({
-      model: 'llama-3.1-sonar-small-128k-online',
+      model: 'sonar',
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: query }
@@ -152,7 +152,7 @@ async function queryGrok(query) {
       'Authorization': `Bearer ${process.env.XAI_API_KEY}`
     },
     body: JSON.stringify({
-      model: 'grok-beta',
+      model: 'grok-4.3',
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: query }
