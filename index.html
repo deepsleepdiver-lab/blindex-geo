@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blindex GEO 대시보드</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070f0a;
+      --surface: #0d1f14;
+      --surface2: #122418;
+      --neon: #00ff8c;
+      --gold: #ffd166;
+      --red: #ff5468;
+      --yellow: #ffd166;
+      --line: rgba(0,255,140,.15);
+      --text: #e8f5ee;
+      --muted: #7aaa8a;
+      --font-mono: 'Space Mono', monospace;
+      --font-body: 'IBM Plex Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      background: rgba(7,15,10,.92);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav__logo {
+      font-family: var(--font-mono);
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      color: var(--neon);
+    }
+    .nav__logo span { color: var(--muted); font-weight: 400; }
+    .nav__status {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--muted);
+    }
+    .nav__status .dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--neon);
+      margin-right: .4rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50% { opacity: .3; }
+    }
+
+    /* ── LAYOUT ── */
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── HEADER ── */
+    .page-header {
+      padding: 2.5rem 0 2rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 2rem;
+    }
+    .page-header__eyebrow {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      letter-spacing: .2em;
+      color: var(--neon);
+      opacity: .6;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+    .page-header__title {
+      font-family: var(--font-mono);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .3rem;
+    }
+    .page-header__meta {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    /* ── SUMMARY CARDS ── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .summary-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+    }
+    .summary-card__label {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .5rem;
+    }
+    .summary-card__value {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--neon);
+    }
+    .summary-card__value.zero { color: var(--muted); }
+    .summary-card__sub {
+      font-size: .8rem;
+      color: var(--muted);
+      margin-top: .3rem;
+    }
+
+    /* ── MAIN GRID ── */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ── TABLE CARD ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .card--full { grid-column: 1 / -1; }
+    .card__head {
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card__title {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .card__badge {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      padding: .2rem .6rem;
+      border-radius: 99px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .card__body { padding: 1.5rem; }
+
+    /* ── MENTION TABLE ── */
+    .mention-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .mention-table th {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: .5rem .75rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .mention-table td {
+      padding: .65rem .75rem;
+      border-bottom: 1px solid rgba(0,255,140,.06);
+      font-size: .85rem;
+      vertical-align: middle;
+    }
+    .mention-table tr:last-child td { border-bottom: none; }
+    .mention-table tr:hover td { background: rgba(0,255,140,.03); }
+
+    .query-text {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--text);
+      max-width: 280px;
+    }
+
+    /* status badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      padding: .2rem .55rem;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+    .badge--yes {
+      background: rgba(0,255,140,.12);
+      color: var(--neon);
+      border: 1px solid rgba(0,255,140,.25);
+    }
+    .badge--no {
+      background: rgba(255,84,104,.08);
+      color: #ff8096;
+      border: 1px solid rgba(255,84,104,.2);
+    }
+    .badge--error {
+      background: rgba(255,209,102,.08);
+      color: var(--gold);
+      border: 1px solid rgba(255,209,102,.2);
+    }
+    .badge--loading {
+      background: rgba(122,170,138,.08);
+      color: var(--muted);
+      border: 1px solid var(--line);
+    }
+
+    /* ── AI MODEL SCORES ── */
+    .ai-scores {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .ai-score-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .ai-score-row__name {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      font-weight: 700;
+      width: 90px;
+      color: var(--text);
+    }
+    .ai-score-row__bar-wrap {
+      flex: 1;
+      height: 6px;
+      background: var(--line);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .ai-score-row__bar {
+      height: 100%;
+      background: var(--neon);
+      border-radius: 99px;
+      transition: width .8s ease;
+    }
+    .ai-score-row__count {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--muted);
+      width: 40px;
+      text-align: right;
+    }
+
+    /* ── TREND CHART ── */
+    .trend-wrap {
+      position: relative;
+      height: 120px;
+    }
+    .trend-canvas {
+      width: 100%;
+      height: 100%;
+    }
+    .trend-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSE VIEWER ── */
+    .response-viewer {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-height: 160px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+    .response-viewer .highlight {
+      background: rgba(0,255,140,.2);
+      color: var(--neon);
+      padding: 0 2px;
+      border-radius: 3px;
+    }
+    .response-select {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .response-btn {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      padding: .3rem .75rem;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .response-btn:hover, .response-btn.active {
+      border-color: var(--neon);
+      color: var(--neon);
+      background: rgba(0,255,140,.06);
+    }
+
+    /* ── HISTORY TABLE ── */
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .history-table th {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: .5rem .75rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .history-table td {
+      padding: .6rem .75rem;
+      border-bottom: 1px solid rgba(0,255,140,.06);
+      font-family: var(--font-mono);
+      font-size: .78rem;
+    }
+    .history-table tr:last-child td { border-bottom: none; }
+
+    /* ── LOADING STATE ── */
+    .loading-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      gap: 1rem;
+    }
+    .loading-spinner {
+      width: 32px; height: 32px;
+      border: 2px solid var(--line);
+      border-top-color: var(--neon);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--muted);
+    }
+
+    /* ── DATE NAV ── */
+    .date-nav {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.5rem;
+    }
+    .date-nav__btn {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      padding: .35rem .8rem;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .date-nav__btn:hover:not(:disabled) {
+      border-color: var(--neon);
+      color: var(--neon);
+    }
+    .date-nav__btn:disabled { opacity: .3; cursor: default; }
+    .date-nav__label {
+      font-family: var(--font-mono);
+      font-size: .85rem;
+      color: var(--text);
+      font-weight: 700;
+    }
+    .date-nav__today {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      padding: .2rem .55rem;
+      border-radius: 6px;
+      border: 1px solid rgba(0,255,140,.3);
+      color: var(--neon);
+      background: rgba(0,255,140,.06);
+    }
+
+    /* ── API LINKS ── */
+    .api-links-section {
+      margin-top: 3rem;
+      margin-bottom: 0;
+    }
+    .api-links-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    }
+    .api-link-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-decoration: none;
+      transition: border-color .2s, background .2s;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .api-link-card:hover {
+      border-color: var(--neon);
+      background: rgba(0,255,140,.04);
+    }
+    .api-link-card__name {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .api-link-card__desc {
+      font-size: .75rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .api-link-card__url {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      color: var(--neon);
+      opacity: .7;
+      margin-top: auto;
+    }
+    .api-links-label {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .75rem;
+    }
+    @media (max-width: 820px) {
+      .api-links-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .api-links-grid { grid-template-columns: 1fr; }
+    }
+    .footer {
+      padding: 2rem;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      margin-top: 3rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 820px) {
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .main-grid { grid-template-columns: 1fr; }
+      .card--full { grid-column: auto; }
+    }
+    @media (max-width: 480px) {
+      .summary-grid { grid-template-columns: 1fr 1fr; }
+      .wrap { padding: 0 1rem; }
+      .nav { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__logo">BLINDEX <span>/ GEO 대시보드</span></div>
+  <div class="nav__status" id="nav-status">
+    <span class="dot"></span>
+    <span id="last-updated">로딩 중...</span>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <p class="page-header__eyebrow">Generative Engine Optimization</p>
+    <h1 class="page-header__title">AI 언급 트래커</h1>
+    <p class="page-header__meta" id="header-meta">매일 6개 쿼리 × 5개 AI 모델 자동 체크</p>
+  </div>
+
+  <!-- Date Navigation -->
+  <div class="date-nav">
+    <button class="date-nav__btn" id="btn-prev" onclick="navigateDate(-1)">← 이전</button>
+    <span class="date-nav__label" id="current-date-label">—</span>
+    <button class="date-nav__btn" id="btn-next" onclick="navigateDate(1)" disabled>다음 →</button>
+    <span class="date-nav__today" id="today-badge" style="display:none">오늘</span>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="summary-card__label">총 언급 횟수</div>
+      <div class="summary-card__value" id="stat-total">—</div>
+      <div class="summary-card__sub" id="stat-total-sub">30회 체크 중</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card__label">언급한 AI 수</div>
+      <div class="summary-card__value" id="stat-ais">—</div>
+      <div class="summary-card__sub">5개 모델 중</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card__label">최다 언급 쿼리</div>
+      <div class="summary-card__value" style="font-size:1rem;line-height:1.3" id="stat-best">—</div>
+      <div class="summary-card__sub" id="stat-best-sub"></div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card__label">마지막 체크</div>
+      <div class="summary-card__value" style="font-size:1rem;line-height:1.3" id="stat-date">—</div>
+      <div class="summary-card__sub">매일 09:00 KST 자동 실행</div>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="main-grid">
+
+    <!-- Mention Table -->
+    <div class="card card--full">
+      <div class="card__head">
+        <span class="card__title">쿼리 × AI 매트릭스</span>
+        <span class="card__badge" id="matrix-date">—</span>
+      </div>
+      <div class="card__body" style="padding:0; overflow-x:auto;">
+        <table class="mention-table">
+          <thead>
+            <tr>
+              <th>쿼리</th>
+              <th>ChatGPT</th>
+              <th>Claude</th>
+              <th>Gemini</th>
+              <th>Perplexity</th>
+              <th>Grok</th>
+            </tr>
+          </thead>
+          <tbody id="matrix-body">
+            <tr><td colspan="6" style="text-align:center;padding:2rem">
+              <div class="loading-wrap"><div class="loading-spinner"></div><div class="loading-text">데이터 불러오는 중...</div></div>
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AI Score Bars -->
+    <div class="card">
+      <div class="card__head">
+        <span class="card__title">AI별 언급 비율</span>
+        <span class="card__badge">6개 쿼리</span>
+      </div>
+      <div class="card__body">
+        <div class="ai-scores" id="ai-scores">
+          <div class="loading-wrap" style="padding:1rem"><div class="loading-spinner"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trend Chart -->
+    <div class="card">
+      <div class="card__head">
+        <span class="card__title">30일 트렌드</span>
+        <span class="card__badge">총 언급 횟수</span>
+      </div>
+      <div class="card__body">
+        <div class="trend-wrap">
+          <canvas class="trend-canvas" id="trend-canvas"></canvas>
+          <div class="trend-empty" id="trend-empty" style="display:none">데이터가 쌓이면 표시됩니다</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Response Viewer -->
+    <div class="card card--full">
+      <div class="card__head">
+        <span class="card__title">응답 내용 확인</span>
+        <span class="card__badge">실제 AI 응답</span>
+      </div>
+      <div class="card__body">
+        <div class="response-select" id="response-ai-select"></div>
+        <div class="response-select" id="response-query-select"></div>
+        <div class="response-viewer" id="response-text">위에서 AI와 쿼리를 선택하면 응답 내용을 확인할 수 있습니다.</div>
+      </div>
+    </div>
+
+    <!-- History -->
+    <div class="card card--full">
+      <div class="card__head">
+        <span class="card__title">히스토리</span>
+        <span class="card__badge" id="history-count">—</span>
+      </div>
+      <div class="card__body" style="padding:0; overflow-x:auto;">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>날짜</th>
+              <th>ChatGPT</th>
+              <th>Claude</th>
+              <th>Gemini</th>
+              <th>Perplexity</th>
+              <th>Grok</th>
+              <th>합계</th>
+            </tr>
+          </thead>
+          <tbody id="history-body">
+            <tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--muted);font-family:var(--font-mono);font-size:.75rem">
+              아직 데이터가 없습니다. 첫 번째 자동 체크 후 표시됩니다.
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div class="wrap api-links-section">
+  <p class="api-links-label">API 관리</p>
+  <div class="api-links-grid">
+
+    <a class="api-link-card" href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">
+      <span class="api-link-card__name">ChatGPT</span>
+      <span class="api-link-card__desc">API 키 발급 · 사용량 확인 · 크레딧 충전</span>
+      <span class="api-link-card__url">platform.openai.com</span>
+    </a>
+
+    <a class="api-link-card" href="https://console.anthropic.com" target="_blank" rel="noopener">
+      <span class="api-link-card__name">Claude</span>
+      <span class="api-link-card__desc">API 키 발급 · 사용량 확인 · 크레딧 충전</span>
+      <span class="api-link-card__url">console.anthropic.com</span>
+    </a>
+
+    <a class="api-link-card" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">
+      <span class="api-link-card__name">Gemini</span>
+      <span class="api-link-card__desc">API 키 발급 · 무료 티어 확인</span>
+      <span class="api-link-card__url">aistudio.google.com</span>
+    </a>
+
+    <a class="api-link-card" href="https://www.perplexity.ai/settings/api" target="_blank" rel="noopener">
+      <span class="api-link-card__name">Perplexity</span>
+      <span class="api-link-card__desc">API 키 발급 · 사용량 확인 · 크레딧 충전</span>
+      <span class="api-link-card__url">perplexity.ai/settings/api</span>
+    </a>
+
+    <a class="api-link-card" href="https://console.x.ai" target="_blank" rel="noopener">
+      <span class="api-link-card__name">Grok</span>
+      <span class="api-link-card__desc">API 키 발급 · 무료 크레딧 확인</span>
+      <span class="api-link-card__url">console.x.ai</span>
+    </a>
+
+  </div>
+</div>
+
+<footer class="footer">
+  BLINDEX GEO 대시보드 — GitHub Actions로 매일 자동 체크
+</footer>
+
+<script>
+  const AI_IDS = ['chatgpt', 'claude', 'gemini', 'perplexity', 'grok'];
+  const AI_NAMES = { chatgpt: 'ChatGPT', claude: 'Claude', gemini: 'Gemini', perplexity: 'Perplexity', grok: 'Grok' };
+
+  const QUERIES = [
+    "best single player Indian poker app for Android",
+    "Indian poker app without friends",
+    "blind man's bluff card game app Android",
+    "best offline card game Android free",
+    "how to play Indian poker on Android",
+    "free single player card game Android no wifi"
+  ];
+
+  // GitHub raw content base URL — update after repo is created
+  const DATA_BASE = './data';
+
+  let allData = {};
+  let dateIndex = [];
+  let currentDateIdx = 0;
+  let selectedAI = 'chatgpt';
+  let selectedQuery = QUERIES[0];
+
+  // ── Data loading ──────────────────────────────────────────────────────────
+  async function loadIndex() {
+    try {
+      const res = await fetch(`${DATA_BASE}/index.json?t=${Date.now()}`);
+      if (!res.ok) return [];
+      return await res.json();
+    } catch { return []; }
+  }
+
+  async function loadDayData(date) {
+    if (allData[date]) return allData[date];
+    try {
+      const res = await fetch(`${DATA_BASE}/${date}.json?t=${Date.now()}`);
+      if (!res.ok) return null;
+      const data = await res.json();
+      allData[date] = data;
+      return data;
+    } catch { return null; }
+  }
+
+  // ── Rendering ─────────────────────────────────────────────────────────────
+  function mentionBadge(q) {
+    if (!q) return `<span class="badge badge--loading">—</span>`;
+    if (q.error) return `<span class="badge badge--error">ERR</span>`;
+    if (q.mentioned) return `<span class="badge badge--yes">✓ YES${q.rank ? ` #${q.rank}` : ''}</span>`;
+    return `<span class="badge badge--no">✗ NO</span>`;
+  }
+
+  function renderMatrix(data) {
+    const tbody = document.getElementById('matrix-body');
+    if (!data) {
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:2rem;color:var(--muted);font-family:var(--font-mono);font-size:.75rem">해당 날짜의 데이터가 없습니다.</td></tr>`;
+      return;
+    }
+    tbody.innerHTML = QUERIES.map(query => {
+      const shortQ = query.length > 45 ? query.substring(0, 45) + '…' : query;
+      const cells = AI_IDS.map(ai => {
+        const q = data.results[ai]?.queries?.[query];
+        return `<td>${mentionBadge(q)}</td>`;
+      }).join('');
+      return `<tr><td><span class="query-text" title="${query}">${shortQ}</span></td>${cells}</tr>`;
+    }).join('');
+  }
+
+  function renderSummary(data) {
+    if (!data) {
+      ['stat-total','stat-ais','stat-best','stat-date'].forEach(id => {
+        document.getElementById(id).textContent = '—';
+        document.getElementById(id).className = 'summary-card__value zero';
+      });
+      return;
+    }
+
+    let total = 0;
+    let aisWithMention = 0;
+    const queryMentions = {};
+    QUERIES.forEach(q => queryMentions[q] = 0);
+
+    AI_IDS.forEach(ai => {
+      let aiMentioned = false;
+      QUERIES.forEach(query => {
+        const q = data.results[ai]?.queries?.[query];
+        if (q?.mentioned) {
+          total++;
+          aiMentioned = true;
+          queryMentions[query]++;
+        }
+      });
+      if (aiMentioned) aisWithMention++;
+    });
+
+    const bestQuery = Object.entries(queryMentions).sort((a,b) => b[1]-a[1])[0];
+
+    const totalEl = document.getElementById('stat-total');
+    totalEl.textContent = total;
+    totalEl.className = `summary-card__value${total === 0 ? ' zero' : ''}`;
+
+    const aisEl = document.getElementById('stat-ais');
+    aisEl.textContent = aisWithMention;
+    aisEl.className = `summary-card__value${aisWithMention === 0 ? ' zero' : ''}`;
+
+    const bestEl = document.getElementById('stat-best');
+    const bestSubEl = document.getElementById('stat-best-sub');
+    if (bestQuery[1] > 0) {
+      const words = bestQuery[0].split(' ').slice(0,4).join(' ') + '…';
+      bestEl.textContent = words;
+      bestSubEl.textContent = `${bestQuery[1]}/5 AIs`;
+    } else {
+      bestEl.textContent = '아직 없음';
+      bestSubEl.textContent = '';
+    }
+    bestEl.className = `summary-card__value${bestQuery[1] === 0 ? ' zero' : ''}`;
+
+    document.getElementById('stat-date').textContent = data.date;
+    document.getElementById('stat-date').className = 'summary-card__value';
+    document.getElementById('stat-total-sub').textContent = `${AI_IDS.length * QUERIES.length}회 체크 중`;
+  }
+
+  function renderAIScores(data) {
+    const container = document.getElementById('ai-scores');
+    if (!data) {
+      container.innerHTML = '<div style="color:var(--muted);font-family:var(--font-mono);font-size:.75rem;text-align:center;padding:1rem">데이터 없음</div>';
+      return;
+    }
+    container.innerHTML = AI_IDS.map(ai => {
+      const aiData = data.results[ai];
+      const count = aiData ? Object.values(aiData.queries).filter(q => q?.mentioned).length : 0;
+      const pct = (count / QUERIES.length) * 100;
+      return `
+        <div class="ai-score-row">
+          <span class="ai-score-row__name">${AI_NAMES[ai]}</span>
+          <div class="ai-score-row__bar-wrap">
+            <div class="ai-score-row__bar" style="width:${pct}%"></div>
+          </div>
+          <span class="ai-score-row__count">${count}/${QUERIES.length}</span>
+        </div>`;
+    }).join('');
+  }
+
+  function renderTrend() {
+    const canvas = document.getElementById('trend-canvas');
+    const empty = document.getElementById('trend-empty');
+    const dates = dateIndex.slice(0, 30).reverse();
+
+    if (dates.length < 2) {
+      canvas.style.display = 'none';
+      empty.style.display = 'flex';
+      return;
+    }
+    canvas.style.display = 'block';
+    empty.style.display = 'none';
+
+    const totals = dates.map(d => {
+      const data = allData[d];
+      if (!data) return 0;
+      let t = 0;
+      AI_IDS.forEach(ai => {
+        QUERIES.forEach(q => { if (data.results[ai]?.queries?.[q]?.mentioned) t++; });
+      });
+      return t;
+    });
+
+    const max = Math.max(...totals, 1);
+    const W = canvas.offsetWidth || 600;
+    const H = 120;
+    canvas.width = W;
+    canvas.height = H;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, W, H);
+
+    // Grid lines
+    ctx.strokeStyle = 'rgba(0,255,140,.08)';
+    ctx.lineWidth = 1;
+    [0, 0.25, 0.5, 0.75, 1].forEach(frac => {
+      const y = H - frac * (H - 20) - 10;
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    });
+
+    // Area fill
+    const stepX = W / (dates.length - 1);
+    const points = totals.map((v, i) => ({ x: i * stepX, y: H - 10 - (v / max) * (H - 20) }));
+
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, H);
+    points.forEach(p => ctx.lineTo(p.x, p.y));
+    ctx.lineTo(points[points.length-1].x, H);
+    ctx.closePath();
+    const grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, 'rgba(0,255,140,.25)');
+    grad.addColorStop(1, 'rgba(0,255,140,.02)');
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Line
+    ctx.beginPath();
+    ctx.strokeStyle = '#00ff8c';
+    ctx.lineWidth = 2;
+    ctx.lineJoin = 'round';
+    points.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+    ctx.stroke();
+
+    // Dots
+    points.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = '#00ff8c';
+      ctx.fill();
+    });
+  }
+
+  function renderResponseSelect(data) {
+    const aiSel = document.getElementById('response-ai-select');
+    const qSel = document.getElementById('response-query-select');
+
+    aiSel.innerHTML = AI_IDS.map(ai =>
+      `<button class="response-btn${ai === selectedAI ? ' active' : ''}" onclick="selectAI('${ai}')">${AI_NAMES[ai]}</button>`
+    ).join('');
+
+    qSel.innerHTML = QUERIES.map((q, i) => {
+      const short = `Q${i+1}`;
+      return `<button class="response-btn${q === selectedQuery ? ' active' : ''}" onclick="selectQuery('${q.replace(/'/g,"\\'")}');" title="${q}">${short}</button>`;
+    }).join('');
+
+    renderResponseText(data);
+  }
+
+  function renderResponseText(data) {
+    const el = document.getElementById('response-text');
+    if (!data) { el.textContent = '데이터가 없습니다.'; return; }
+    const q = data.results[selectedAI]?.queries?.[selectedQuery];
+    if (!q) { el.textContent = '기록된 응답이 없습니다.'; return; }
+    if (q.error) { el.textContent = `오류: ${q.error}`; return; }
+
+    let text = q.response_snippet || 'No snippet available.';
+    // Highlight Blindex
+    text = text.replace(/blindex/gi, '<span class="highlight">$&</span>');
+    el.innerHTML = text + (q.response_snippet?.length >= 300 ? '\n[...]' : '');
+  }
+
+  async function renderHistory() {
+    const tbody = document.getElementById('history-body');
+    const countEl = document.getElementById('history-count');
+
+    if (dateIndex.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--muted);font-family:var(--font-mono);font-size:.75rem">아직 데이터가 없습니다.</td></tr>`;
+      countEl.textContent = '0 days';
+      return;
+    }
+
+    countEl.textContent = `${dateIndex.length}일`;
+
+    // Load all history data
+    await Promise.all(dateIndex.map(d => loadDayData(d)));
+
+    tbody.innerHTML = dateIndex.map(date => {
+      const data = allData[date];
+      if (!data) return `<tr><td>${date}</td><td colspan="6" style="color:var(--muted)">—</td></tr>`;
+
+      let total = 0;
+      const aiCounts = AI_IDS.map(ai => {
+        const count = Object.values(data.results[ai]?.queries || {}).filter(q => q?.mentioned).length;
+        total += count;
+        const color = count === 0 ? 'var(--muted)' : count >= 4 ? 'var(--neon)' : 'var(--text)';
+        return `<td style="color:${color};font-family:var(--font-mono)">${count}/${QUERIES.length}</td>`;
+      }).join('');
+
+      const totalColor = total === 0 ? 'var(--muted)' : total >= 15 ? 'var(--neon)' : 'var(--text)';
+      return `<tr>
+        <td style="font-family:var(--font-mono)">${date}</td>
+        ${aiCounts}
+        <td style="color:${totalColor};font-family:var(--font-mono);font-weight:700">${total}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  // ── Navigation ────────────────────────────────────────────────────────────
+  async function navigateDate(dir) {
+    const newIdx = currentDateIdx + dir;
+    if (newIdx < 0 || newIdx >= dateIndex.length) return;
+    currentDateIdx = newIdx;
+    await renderCurrentDate();
+  }
+
+  async function renderCurrentDate() {
+    const date = dateIndex[currentDateIdx];
+    const isToday = currentDateIdx === 0;
+
+    document.getElementById('current-date-label').textContent = date;
+    document.getElementById('btn-prev').disabled = currentDateIdx >= dateIndex.length - 1;
+    document.getElementById('btn-next').disabled = currentDateIdx <= 0;
+    document.getElementById('today-badge').style.display = isToday ? 'inline' : 'none';
+    document.getElementById('matrix-date').textContent = date;
+
+    const data = await loadDayData(date);
+    renderMatrix(data);
+    renderSummary(data);
+    renderAIScores(data);
+    renderResponseSelect(data);
+  }
+
+  // ── Response interaction ──────────────────────────────────────────────────
+  function selectAI(ai) {
+    selectedAI = ai;
+    const data = dateIndex[currentDateIdx] ? allData[dateIndex[currentDateIdx]] : null;
+    renderResponseSelect(data);
+  }
+
+  function selectQuery(q) {
+    selectedQuery = q;
+    const data = dateIndex[currentDateIdx] ? allData[dateIndex[currentDateIdx]] : null;
+    renderResponseSelect(data);
+  }
+
+  // ── Init ──────────────────────────────────────────────────────────────────
+  async function init() {
+    // Update nav
+    document.getElementById('last-updated').textContent = '매일 09:00 KST 자동 업데이트';
+
+    // Load index
+    dateIndex = await loadIndex();
+
+    if (dateIndex.length === 0) {
+      // No data yet
+      document.getElementById('current-date-label').textContent = '아직 데이터 없음';
+      document.getElementById('btn-prev').disabled = true;
+      renderMatrix(null);
+      renderSummary(null);
+      renderAIScores(null);
+      renderResponseSelect(null);
+      document.getElementById('trend-canvas').style.display = 'none';
+      document.getElementById('trend-empty').style.display = 'flex';
+    } else {
+      currentDateIdx = 0;
+      await renderCurrentDate();
+      // Preload history
+      await renderHistory();
+      renderTrend();
+    }
+
+    // Header meta
+    document.getElementById('header-meta').textContent =
+      `${QUERIES.length}개 쿼리 × 5개 AI 모델 — ${dateIndex.length}일 누적`;
+  }
+
+  window.addEventListener('load', init);
+  window.addEventListener('resize', renderTrend);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "blindex-geo-dashboard",
+  "version": "1.0.0",
+  "description": "Daily GEO tracking dashboard for Blindex",
+  "scripts": {
+    "check": "node check.js",
+    "screenshot": "node screenshot.js",
+    "run-all": "node check.js && node screenshot.js"
+  },
+  "dependencies": {
+    "puppeteer": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
