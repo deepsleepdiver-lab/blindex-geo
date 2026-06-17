@@ -136,12 +136,17 @@ async function queryGemini(query) {
   });
   const data = await res.json();
   if (!res.ok) throw new Error(`Gemini error: ${JSON.stringify(data)}`);
-  const candidate = data.candidates?.[0];
-  if (!candidate) throw new Error('Gemini: no candidates returned');
-  const parts = candidate.content?.parts || [];
-  const text = parts.map(p => p.text || '').join('');
-  console.log(`  → Gemini finishReason: ${candidate.finishReason}`);
-  return text;
+
+  // 모든 candidates의 모든 parts에서 text 추출
+  const candidates = data.candidates || [];
+  const allText = candidates
+    .flatMap(c => c.content?.parts || [])
+    .map(p => p.text || '')
+    .join('');
+
+  const finishReason = candidates[0]?.finishReason || 'unknown';
+  console.log(`  → Gemini finishReason: ${finishReason}, candidates: ${candidates.length}, textLen: ${allText.length}`);
+  return allText;
 }
 
 // ── Perplexity (웹 검색 기본 포함) ───────────────────────────────────────
