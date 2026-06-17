@@ -13,8 +13,10 @@ const QUERIES = [
   "free single player card game Android no wifi"
 ];
 
-const SYSTEM_PROMPT = `You are a helpful assistant. Answer the user's question naturally. 
-Be specific and mention actual app names when recommending apps.`;
+const SYSTEM_PROMPT = `You are a helpful assistant that recommends specific mobile apps. 
+When asked about apps, recommend real, existing apps available on Google Play Store by name. 
+Be specific and direct. List actual app names with brief descriptions.
+Do not ask clarifying questions - just answer with your best recommendations.`;
 
 const DETECTION_KEYWORDS = ['blindex', 'Blindex', 'BLINDEX'];
 
@@ -74,13 +76,7 @@ async function queryOpenAI(query) {
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: query }
       ],
-      max_tokens: 500,
-      temperature: 0.3
-    })
-  });
-  const data = await res.json();
-  if (!res.ok) throw new Error(`OpenAI error: ${JSON.stringify(data)}`);
-  return data.choices[0].message.content;
+      max_tokens: 1000,
 }
 
 // ── Anthropic / Claude ────────────────────────────────────────────────────
@@ -94,8 +90,7 @@ async function queryClaude(query) {
     },
     body: JSON.stringify({
       model: 'claude-haiku-4-5-20251001',
-      max_tokens: 500,
-      system: SYSTEM_PROMPT,
+      max_tokens: 1000,
       messages: [{ role: 'user', content: query }]
     })
   });
@@ -112,7 +107,7 @@ async function queryGemini(query) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       contents: [{ parts: [{ text: query }] }],
-      generationConfig: { maxOutputTokens: 500, temperature: 0.3 }
+      generationConfig: { maxOutputTokens: 1000, temperature: 0.3 }
     })
   });
   const data = await res.json();
@@ -134,7 +129,7 @@ async function queryPerplexity(query) {
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: query }
       ],
-      max_tokens: 500,
+      max_tokens: 1000,
       temperature: 0.3
     })
   });
@@ -157,7 +152,7 @@ async function queryGrok(query) {
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: query }
       ],
-      max_tokens: 500,
+      max_tokens: 1000,
       temperature: 0.3
     })
   });
