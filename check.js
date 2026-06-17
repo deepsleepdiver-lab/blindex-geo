@@ -5,12 +5,12 @@ const fs = require('fs');
 const path = require('path');
 
 const QUERIES = [
-  "best single player Indian poker app for Android",
-  "Indian poker app without friends",
-  "blind man's bluff card game app Android",
-  "best offline card game Android free",
-  "how to play Indian poker on Android",
-  "free single player card game Android no wifi"
+  "best single player Blind Man's Bluff Indian poker app for Android",
+  "Blind Man's Bluff Indian poker app to play alone without friends on Android",
+  "blind man's bluff forehead poker card game Android app",
+  "best free offline Blind Man's Bluff Indian poker Android game",
+  "how to play Blind Man's Bluff Indian poker on Android app",
+  "free single player Blind Man's Bluff card game Android no wifi"
 ];
 
 const SYSTEM_PROMPT = `You are a helpful assistant that recommends specific mobile apps.
@@ -69,12 +69,7 @@ async function queryOpenAI(query) {
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: query }
       ],
-      max_tokens: 1000
-    })
-  });
-  const data = await res.json();
-  if (!res.ok) throw new Error(`OpenAI error: ${JSON.stringify(data)}`);
-  return data.choices[0].message.content;
+      max_tokens: 4096
 }
 
 // ── Anthropic / Claude (웹 검색 멀티턴 처리) ────────────────────────────
@@ -94,7 +89,7 @@ async function queryClaude(query) {
       headers,
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 2000,
+        max_tokens: 4096,
         system: SYSTEM_PROMPT,
         tools,
         messages
@@ -131,23 +126,28 @@ async function queryClaude(query) {
   return '';
 }
 
-// ── Google / Gemini (Google Search grounding 활성화) ──────────────────────
+// ── Google / Gemini ───────────────────────────────────────────────────────
 async function queryGemini(query) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
   const res = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      contents: [{ parts: [{ text: query }] }],
+      system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+      contents: [{ role: 'user', parts: [{ text: query }] }],
       tools: [{ google_search: {} }],
-      generationConfig: { maxOutputTokens: 1000 }
+      generationConfig: { maxOutputTokens: 8192, temperature: 0.3 }
     })
   });
   const data = await res.json();
   if (!res.ok) throw new Error(`Gemini error: ${JSON.stringify(data)}`);
-  // parts가 여러 개일 수 있으므로 전부 합산
-  const parts = data.candidates[0].content.parts || [];
-  return parts.map(p => p.text || '').join('');
+  const candidate = data.candidates?.[0];
+  if (!candidate) throw new Error('Gemini: no candidates returned');
+  const parts = candidate.content?.parts || [];
+  const text = parts.map(p => p.text || '').join('');
+  // finishReason 로깅 (잘림 감지)
+  console.log(`  → Gemini finishReason: ${candidate.finishReason}`);
+  return text;
 }
 
 // ── Perplexity (기본적으로 웹 검색 포함) ──────────────────────────────────
@@ -164,13 +164,7 @@ async function queryPerplexity(query) {
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: query }
       ],
-      max_tokens: 1000,
-      temperature: 0.3
-    })
-  });
-  const data = await res.json();
-  if (!res.ok) throw new Error(`Perplexity error: ${JSON.stringify(data)}`);
-  return data.choices[0].message.content;
+      max_tokens: 4096,
 }
 
 // ── xAI / Grok (Responses API + web_search tool) ─────────────────────────
@@ -188,7 +182,7 @@ async function queryGrok(query) {
         { role: 'user', content: query }
       ],
       tools: [{ type: 'web_search' }],
-      max_output_tokens: 1000
+      max_output_tokens: 4096
     })
   });
   const data = await res.json();
@@ -241,6 +235,7 @@ async function runCheck() {
         };
 
         console.log(`  → Mentioned: ${detection.mentioned ? '✅ YES' : '❌ NO'}${detection.rank ? ` (rank #${detection.rank})` : ''}`);
+        console.log(`  → Response (first 200 chars): ${response.substring(0, 200).replace(/\n/g, ' ')}`);
         await new Promise(r => setTimeout(r, 1000));
 
       } catch (err) {
