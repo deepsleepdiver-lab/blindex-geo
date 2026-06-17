@@ -55,7 +55,7 @@ function detectMention(text) {
   return { mentioned, rank, competitors, attributes };
 }
 
-// ── OpenAI / ChatGPT (웹 검색 모델) ───────────────────────────────────────
+// ── OpenAI / ChatGPT (웹 검색 모델) ──────────────────────────────────────
 async function queryOpenAI(query) {
   const res = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -70,9 +70,14 @@ async function queryOpenAI(query) {
         { role: 'user', content: query }
       ],
       max_tokens: 4096
+    })
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(`OpenAI error: ${JSON.stringify(data)}`);
+  return data.choices[0].message.content;
 }
 
-// ── Anthropic / Claude (웹 검색 멀티턴 처리) ────────────────────────────
+// ── Anthropic / Claude (웹 검색 멀티턴 처리) ─────────────────────────────
 async function queryClaude(query) {
   const headers = {
     'Content-Type': 'application/json',
@@ -82,7 +87,6 @@ async function queryClaude(query) {
   const tools = [{ type: 'web_search_20250305', name: 'web_search', max_uses: 3 }];
   let messages = [{ role: 'user', content: query }];
 
-  // 최대 5번 반복해서 tool_use → tool_result 사이클 처리
   for (let i = 0; i < 5; i++) {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -98,27 +102,18 @@ async function queryClaude(query) {
     const data = await res.json();
     if (!res.ok) throw new Error(`Claude error: ${JSON.stringify(data)}`);
 
-    // 최종 응답 (stop_reason이 end_turn이면 텍스트 반환)
     if (data.stop_reason === 'end_turn') {
       const textBlocks = data.content.filter(b => b.type === 'text').map(b => b.text);
       return textBlocks.join('\n');
     }
 
-    // tool_use 블록이 있으면 messages에 추가하고 계속
     if (data.stop_reason === 'tool_use') {
-      // assistant 턴 추가
       messages.push({ role: 'assistant', content: data.content });
-      // tool_result 턴 추가 (웹 검색은 서버사이드 처리라 빈 결과 전달)
       const toolResults = data.content
         .filter(b => b.type === 'tool_use')
-        .map(b => ({
-          type: 'tool_result',
-          tool_use_id: b.id,
-          content: ''
-        }));
+        .map(b => ({ type: 'tool_result', tool_use_id: b.id, content: '' }));
       messages.push({ role: 'user', content: toolResults });
     } else {
-      // 예상치 못한 stop_reason이면 텍스트 추출 후 반환
       const textBlocks = data.content.filter(b => b.type === 'text').map(b => b.text);
       return textBlocks.join('\n');
     }
@@ -126,7 +121,7 @@ async function queryClaude(query) {
   return '';
 }
 
-// ── Google / Gemini ───────────────────────────────────────────────────────
+// ── Google / Gemini (Google Search grounding) ─────────────────────────────
 async function queryGemini(query) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
   const res = await fetch(url, {
@@ -145,12 +140,11 @@ async function queryGemini(query) {
   if (!candidate) throw new Error('Gemini: no candidates returned');
   const parts = candidate.content?.parts || [];
   const text = parts.map(p => p.text || '').join('');
-  // finishReason 로깅 (잘림 감지)
   console.log(`  → Gemini finishReason: ${candidate.finishReason}`);
   return text;
 }
 
-// ── Perplexity (기본적으로 웹 검색 포함) ──────────────────────────────────
+// ── Perplexity (웹 검색 기본 포함) ───────────────────────────────────────
 async function queryPerplexity(query) {
   const res = await fetch('https://api.perplexity.ai/chat/completions', {
     method: 'POST',
@@ -165,6 +159,12 @@ async function queryPerplexity(query) {
         { role: 'user', content: query }
       ],
       max_tokens: 4096,
+      temperature: 0.3
+    })
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(`Perplexity error: ${JSON.stringify(data)}`);
+  return data.choices[0].message.content;
 }
 
 // ── xAI / Grok (Responses API + web_search tool) ─────────────────────────
@@ -187,7 +187,6 @@ async function queryGrok(query) {
   });
   const data = await res.json();
   if (!res.ok) throw new Error(`Grok error: ${JSON.stringify(data)}`);
-  // Responses API 응답 구조에서 텍스트 추출
   if (data.output) {
     const textParts = data.output
       .filter(o => o.type === 'message')
@@ -235,7 +234,7 @@ async function runCheck() {
         };
 
         console.log(`  → Mentioned: ${detection.mentioned ? '✅ YES' : '❌ NO'}${detection.rank ? ` (rank #${detection.rank})` : ''}`);
-        console.log(`  → Response (first 200 chars): ${response.substring(0, 200).replace(/\n/g, ' ')}`);
+        console.log(`  → Preview: ${response.substring(0, 150).replace(/\n/g, ' ')}`);
         await new Promise(r => setTimeout(r, 1000));
 
       } catch (err) {
