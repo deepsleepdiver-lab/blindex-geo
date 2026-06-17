@@ -310,7 +310,7 @@
       font-size: .75rem;
       color: var(--muted);
       line-height: 1.7;
-      max-height: 160px;
+      max-height: 400px;
       overflow-y: auto;
       white-space: pre-wrap;
     }
@@ -936,10 +936,10 @@
     if (!q) { el.textContent = '기록된 응답이 없습니다.'; return; }
     if (q.error) { el.textContent = `오류: ${q.error}`; return; }
 
-    let text = q.response_snippet || 'No snippet available.';
+    let text = q.response || 'No snippet available.';
     // Highlight Blindex
     text = text.replace(/blindex/gi, '<span class="highlight">$&</span>');
-    el.innerHTML = text + (q.response_snippet?.length >= 300 ? '\n[...]' : '');
+    el.innerHTML = text;
   }
 
   async function renderHistory() {
