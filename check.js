@@ -96,9 +96,11 @@ async function queryClaude(query) {
   });
   const data = await res.json();
   if (!res.ok) throw new Error(`Claude error: ${JSON.stringify(data)}`);
-  // 웹 검색 결과 포함 응답에서 텍스트 추출
-  const textBlock = data.content.find(b => b.type === 'text');
-  return textBlock ? textBlock.text : '';
+  // tool_use 포함 응답에서 텍스트 블록만 추출, 없으면 전체 content 합산
+  const textBlocks = data.content.filter(b => b.type === 'text').map(b => b.text);
+  if (textBlocks.length > 0) return textBlocks.join('\n');
+  // 텍스트가 없으면 tool_result까지 포함한 추가 턴 필요 없이 tool_use 이름만 반환
+  return data.content.map(b => b.type === 'tool_use' ? `[searching: ${b.input?.query || query}]` : '').join(' ');
 }
 
 // ── Google / Gemini (Google Search grounding 활성화) ──────────────────────
@@ -141,9 +143,9 @@ async function queryPerplexity(query) {
   return data.choices[0].message.content;
 }
 
-// ── xAI / Grok (웹 검색 활성화 - Responses API) ──────────────────────────
+// ── xAI / Grok (Responses API + web_search tool) ─────────────────────────
 async function queryGrok(query) {
-  const res = await fetch('https://api.x.ai/v1/chat/completions', {
+  const res = await fetch('https://api.x.ai/v1/responses', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -151,18 +153,26 @@ async function queryGrok(query) {
     },
     body: JSON.stringify({
       model: 'grok-4.3',
-      messages: [
+      input: [
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: query }
       ],
-      max_tokens: 1000,
-      temperature: 0.3,
-      search_parameters: { mode: 'on' }
+      tools: [{ type: 'web_search' }],
+      max_output_tokens: 1000
     })
   });
   const data = await res.json();
   if (!res.ok) throw new Error(`Grok error: ${JSON.stringify(data)}`);
-  return data.choices[0].message.content;
+  // Responses API 응답 구조에서 텍스트 추출
+  if (data.output) {
+    const textParts = data.output
+      .filter(o => o.type === 'message')
+      .flatMap(o => o.content || [])
+      .filter(c => c.type === 'output_text')
+      .map(c => c.text);
+    return textParts.join('\n');
+  }
+  return data.choices?.[0]?.message?.content || '';
 }
 
 const AI_MODELS = [
