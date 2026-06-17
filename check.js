@@ -117,7 +117,9 @@ async function queryGemini(query) {
   });
   const data = await res.json();
   if (!res.ok) throw new Error(`Gemini error: ${JSON.stringify(data)}`);
-  return data.candidates[0].content.parts[0].text;
+  // parts가 여러 개일 수 있으므로 전부 합산
+  const parts = data.candidates[0].content.parts || [];
+  return parts.map(p => p.text || '').join('');
 }
 
 // ── Perplexity (기본적으로 웹 검색 포함) ──────────────────────────────────
