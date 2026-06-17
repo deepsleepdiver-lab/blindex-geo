@@ -198,7 +198,7 @@ async function runCheck() {
           rank: detection.rank,
           attributes: detection.attributes,
           competitors: detection.competitors,
-          response_snippet: response.substring(0, 300)
+          response: response
         };
 
         console.log(`  → Mentioned: ${detection.mentioned ? '✅ YES' : '❌ NO'}${detection.rank ? ` (rank #${detection.rank})` : ''}`);
