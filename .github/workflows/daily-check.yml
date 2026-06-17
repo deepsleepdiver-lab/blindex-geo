@@ -1,0 +1,49 @@
+name: Daily GEO Check
+
+on:
+  schedule:
+    # 매일 00:00 UTC = 09:00 KST
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    # 수동 실행도 가능
+
+jobs:
+  geo-check:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Puppeteer
+        run: |
+          npm install puppeteer
+          npx puppeteer browsers install chrome
+
+      - name: Run GEO Check
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+        run: node check.js
+
+      - name: Capture Screenshot
+        run: node screenshot.js
+
+      - name: Commit results
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GEO Bot"
+          git add data/ screenshots/
+          git diff --staged --quiet || git commit -m "GEO check: $(date +%Y-%m-%d)"
+          git push
