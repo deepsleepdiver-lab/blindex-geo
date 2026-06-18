@@ -936,7 +936,7 @@
     if (!q) { el.textContent = '기록된 응답이 없습니다.'; return; }
     if (q.error) { el.textContent = `오류: ${q.error}`; return; }
 
-    let text = q.response || 'No snippet available.';
+    let text = q.response || q.response_snippet || '응답 내용이 없습니다.';
     // Highlight Blindex
     text = text.replace(/blindex/gi, '<span class="highlight">$&</span>');
     el.innerHTML = text;
