@@ -2,8 +2,8 @@ name: Daily GEO Check
 
 on:
   schedule:
-    # 매일 22:00 UTC = 07:00 KST (큐 한산한 시간대)
-    - cron: '0 22 * * *'
+    # 매일 21:37 UTC = 06:37 KST (큐 한산한 시간대)
+    - cron: '37 21 * * *'
   workflow_dispatch:
     # 수동 실행도 가능
 
