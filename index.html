@@ -706,12 +706,12 @@
   const AI_NAMES = { chatgpt: 'ChatGPT', claude: 'Claude', gemini: 'Gemini', perplexity: 'Perplexity', grok: 'Grok' };
 
   const QUERIES = [
-    "best single player Indian poker app for Android",
-    "Indian poker app without friends",
-    "blind man's bluff card game app Android",
-    "best offline card game Android free",
-    "how to play Indian poker on Android",
-    "free single player card game Android no wifi"
+    "blind man's bluff card game app for Android",
+    "forehead poker app Android",
+    "card game where you can't see your own card Android app",
+    "Android card game where you hold card to your forehead",
+    "single player bluffing card game Android offline",
+    "best offline single player card game Android"
   ];
 
   // GitHub raw content base URL — update after repo is created
@@ -751,13 +751,25 @@
     return `<span class="badge badge--no">✗ NO</span>`;
   }
 
+  function getDataQueries(data) {
+    // 저장된 JSON의 실제 쿼리 키를 반환 (없으면 현재 QUERIES 사용)
+    if (!data) return QUERIES;
+    const aiData = data.results[AI_IDS[0]];
+    if (aiData && aiData.queries) {
+      const keys = Object.keys(aiData.queries);
+      if (keys.length > 0) return keys;
+    }
+    return QUERIES;
+  }
+
   function renderMatrix(data) {
     const tbody = document.getElementById('matrix-body');
     if (!data) {
       tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:2rem;color:var(--muted);font-family:var(--font-mono);font-size:.75rem">해당 날짜의 데이터가 없습니다.</td></tr>`;
       return;
     }
-    tbody.innerHTML = QUERIES.map(query => {
+    const queries = getDataQueries(data);
+    tbody.innerHTML = queries.map(query => {
       const shortQ = query.length > 45 ? query.substring(0, 45) + '…' : query;
       const cells = AI_IDS.map(ai => {
         const q = data.results[ai]?.queries?.[query];
@@ -776,14 +788,15 @@
       return;
     }
 
+    const queries = getDataQueries(data);
     let total = 0;
     let aisWithMention = 0;
     const queryMentions = {};
-    QUERIES.forEach(q => queryMentions[q] = 0);
+    queries.forEach(q => queryMentions[q] = 0);
 
     AI_IDS.forEach(ai => {
       let aiMentioned = false;
-      QUERIES.forEach(query => {
+      queries.forEach(query => {
         const q = data.results[ai]?.queries?.[query];
         if (q?.mentioned) {
           total++;
@@ -818,7 +831,7 @@
 
     document.getElementById('stat-date').textContent = data.date;
     document.getElementById('stat-date').className = 'summary-card__value';
-    document.getElementById('stat-total-sub').textContent = `${AI_IDS.length * QUERIES.length}회 체크 중`;
+    document.getElementById('stat-total-sub').textContent = `${AI_IDS.length * queries.length}회 체크 중`;
   }
 
   function renderAIScores(data) {
@@ -827,17 +840,18 @@
       container.innerHTML = '<div style="color:var(--muted);font-family:var(--font-mono);font-size:.75rem;text-align:center;padding:1rem">데이터 없음</div>';
       return;
     }
+    const queries = getDataQueries(data);
     container.innerHTML = AI_IDS.map(ai => {
       const aiData = data.results[ai];
       const count = aiData ? Object.values(aiData.queries).filter(q => q?.mentioned).length : 0;
-      const pct = (count / QUERIES.length) * 100;
+      const pct = (count / queries.length) * 100;
       return `
         <div class="ai-score-row">
           <span class="ai-score-row__name">${AI_NAMES[ai]}</span>
           <div class="ai-score-row__bar-wrap">
             <div class="ai-score-row__bar" style="width:${pct}%"></div>
           </div>
-          <span class="ai-score-row__count">${count}/${QUERIES.length}</span>
+          <span class="ai-score-row__count">${count}/${queries.length}</span>
         </div>`;
     }).join('');
   }
@@ -916,12 +930,13 @@
   function renderResponseSelect(data) {
     const aiSel = document.getElementById('response-ai-select');
     const qSel = document.getElementById('response-query-select');
+    const queries = getDataQueries(data);
 
     aiSel.innerHTML = AI_IDS.map(ai =>
       `<button class="response-btn${ai === selectedAI ? ' active' : ''}" onclick="selectAI('${ai}')">${AI_NAMES[ai]}</button>`
     ).join('');
 
-    qSel.innerHTML = QUERIES.map((q, i) => {
+    qSel.innerHTML = queries.map((q, i) => {
       const short = `Q${i+1}`;
       return `<button class="response-btn${q === selectedQuery ? ' active' : ''}" onclick="selectQuery('${q.replace(/'/g,"\\'")}');" title="${q}">${short}</button>`;
     }).join('');
