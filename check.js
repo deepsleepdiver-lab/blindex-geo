@@ -5,12 +5,12 @@ const fs = require('fs');
 const path = require('path');
 
 const QUERIES = [
-  "best single player Indian poker app for Android",
-  "Indian poker app without friends",
-  "blind man's bluff card game app Android",
-  "best offline card game Android free",
-  "how to play Indian poker on Android",
-  "free single player card game Android no wifi"
+  "blind man's bluff card game app for Android",
+  "forehead poker app Android",
+  "card game where you can't see your own card Android app",
+  "Android card game where you hold card to your forehead",
+  "single player bluffing card game Android offline",
+  "best offline single player card game Android"
 ];
 
 const SYSTEM_PROMPT = `You are a helpful assistant that recommends specific mobile apps.
